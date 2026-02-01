@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Accommodation - Peza Nyumba</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    </head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <i class="fa-solid fa-house-chimney"></i> Peza Nyumba
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="listings.html" class="active">Accommodation</a></li>
+                    <li><a href="shop.html">Groceries</a></li>
+                    <li><a href="marketplace.html">Marketplace</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <a href="login.html" class="btn btn-outline">Log In</a>
+                    <a href="signup.html" class="btn btn-secondary">Sign Up</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header"
+        style="padding-top: 120px; text-align: center; background: #f0fdf4; padding-bottom: 2rem;">
+        <div class="container">
+            <h1>Browse Student Accommodation</h1>
+            <p>Find your next home away from home near your campus.</p>
+        </div>
+    </section>
+
+    <section class="listings-page section-padding">
+        <div class="container">
+
+            <!-- Filters -->
+            <form id="listing-filters" class="card"
+                style="margin-bottom: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-end;">
+                <div style="flex: 1; min-width: 200px;">
+                    <label
+                        style="font-weight: 600; font-size: 0.8rem; display: block; margin-bottom: 0.25rem;">University</label>
+                    <select name="university"
+                        style="width: 100%; padding: 0.7rem; border: 1px solid var(--border); border-radius: var(--radius);">
+                        <option value="all">All Universities</option>
+                        <option value="unza">UNZA</option>
+                        <option value="cbu">CBU</option>
+                        <option value="mulungushi">Mulungushi</option>
+                        <option value="cavendish">Cavendish</option>
+                    </select>
+                </div>
+
+                <div style="flex: 1; min-width: 200px;">
+                    <label
+                        style="font-weight: 600; font-size: 0.8rem; display: block; margin-bottom: 0.25rem;">Location</label>
+                    <input type="text" name="location" placeholder="e.g. Kalingalinga"
+                        style="width: 100%; padding: 0.7rem; border: 1px solid var(--border); border-radius: var(--radius);">
+                </div>
+
+                <div style="flex: 1; min-width: 150px;">
+                    <label style="font-weight: 600; font-size: 0.8rem; display: block; margin-bottom: 0.25rem;">Room
+                        Type</label>
+                    <select name="type"
+                        style="width: 100%; padding: 0.7rem; border: 1px solid var(--border); border-radius: var(--radius);">
+                        <option value="any">Any</option>
+                        <option value="single">Single Room</option>
+                        <option value="shared">Shared Room</option>
+                    </select>
+                </div>
+
+                <div style="flex: 1.5; min-width: 200px;">
+                    <label id="price-label" for="maxPrice"
+                        style="font-weight: 600; font-size: 0.8rem; display: block; margin-bottom: 0.25rem;">Max Price:
+                        K5000</label>
+                    <input type="range" name="maxPrice" min="500" max="5000" step="100" value="5000"
+                        style="width: 100%;"
+                        oninput="document.getElementById('price-label').innerText = 'Max Price: K' + this.value">
+                </div>
+
+                <button type="button" class="btn btn-primary" style="height: 48px;">Apply Filters</button>
+            </form>
+
+            <!-- Grid -->
+            <div class="grid grid-3">
+                <!-- Listing 1 -->
+                <div class="card listing-card">
+                    <img src="Media/Boarding house 1/mages.jpg" alt="Boarding House">
+                    <div class="listing-info">
+                        <div class="listing-uni"><i class="fa-solid fa-graduation-cap"></i> Near UNZA</div>
+                        <h3>Green Valley Boarding</h3>
+                        <p class="listing-price">K1,500 / month</p>
+                        <p style="font-size: 0.9rem; color: #666; margin: 0.5rem 0 1rem;">
+                            <i class="fa-solid fa-location-dot"></i> Great East Road, Lusaka <br>
+                            <span style="font-size: 0.8rem; color: var(--secondary-dark);"><i
+                                    class="fa-solid fa-person-walking"></i> 0.5 km from campus</span>
+                        </p>
+                        <div style="display: flex; gap: 0.8rem; font-size: 0.8rem; color: #555; margin-bottom: 1rem;">
+                            <span><i class="fa-solid fa-bed"></i> Single Room</span>
+                            <span><i class="fa-solid fa-wifi"></i> Free Wifi</span>
+                        </div>
+                        <a href="listing-detail.html?id=1" class="btn btn-primary" style="width: 100%">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Listing 2 -->
+                <div class="card listing-card">
+                    <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                        alt="Apartment">
+                    <div class="listing-info">
+                        <div class="listing-uni"><i class="fa-solid fa-graduation-cap"></i> Near CBU</div>
+                        <h3>Riverside Student Hostels</h3>
+                        <p class="listing-price">K1,200 / month</p>
+                        <p style="font-size: 0.9rem; color: #666; margin: 0.5rem 0 1rem;">
+                            <i class="fa-solid fa-location-dot"></i> Riverside, Kitwe <br>
+                            <span style="font-size: 0.8rem; color: var(--secondary-dark);"><i
+                                    class="fa-solid fa-bus"></i> 1.2 km from campus</span>
+                        </p>
+                        <div style="display: flex; gap: 0.8rem; font-size: 0.8rem; color: #555; margin-bottom: 1rem;">
+                            <span><i class="fa-solid fa-users"></i> Shared Room</span>
+                            <span><i class="fa-solid fa-shield-halved"></i> 24h Security</span>
+                        </div>
+                        <a href="listing-detail.html?id=2" class="btn btn-primary" style="width: 100%">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Listing 3 -->
+                <div class="card listing-card">
+                    <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                        alt="Shared Room">
+                    <div class="listing-info">
+                        <div class="listing-uni"><i class="fa-solid fa-graduation-cap"></i> Near Mulungushi</div>
+                        <h3>Kabwe Scholar Inn</h3>
+                        <p class="listing-price">K800 / month</p>
+                        <p style="font-size: 0.9rem; color: #666; margin: 0.5rem 0 1rem;">
+                            <i class="fa-solid fa-location-dot"></i> Highridge, Kabwe <br>
+                            <span style="font-size: 0.8rem; color: var(--secondary-dark);"><i
+                                    class="fa-solid fa-person-walking"></i> 2.0 km from campus</span>
+                        </p>
+                        <div style="display: flex; gap: 0.8rem; font-size: 0.8rem; color: #555; margin-bottom: 1rem;">
+                            <span><i class="fa-solid fa-faucet-drip"></i> Running Water</span>
+                            <span><i class="fa-solid fa-plug"></i> Solar Power</span>
+                        </div>
+                        <a href="listing-detail.html?id=3" class="btn btn-primary" style="width: 100%">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Listing 4 -->
+                <div class="card listing-card">
+                    <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                        alt="Self Contained">
+                    <div class="listing-info">
+                        <div class="listing-uni"><i class="fa-solid fa-graduation-cap"></i> Near Cavendish</div>
+                        <h3>Longacres Executive Stay</h3>
+                        <p class="listing-price">K2,500 / month</p>
+                        <p style="font-size: 0.9rem; color: #666; margin: 0.5rem 0 1rem;">
+                            <i class="fa-solid fa-location-dot"></i> Longacres, Lusaka <br>
+                            <span style="font-size: 0.8rem; color: var(--secondary-dark);"><i
+                                    class="fa-solid fa-person-walking"></i> 0.8 km from campus</span>
+                        </p>
+                        <div style="display: flex; gap: 0.8rem; font-size: 0.8rem; color: #555; margin-bottom: 1rem;">
+                            <span><i class="fa-solid fa-sink"></i> Submerged Sink</span>
+                            <span><i class="fa-solid fa-shower"></i> Hot Shower</span>
+                        </div>
+                        <a href="listing-detail.html?id=4" class="btn btn-primary" style="width: 100%">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Listing 5 -->
+                <div class="card listing-card">
+                    <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                        alt="Studio">
+                    <div class="listing-info">
+                        <div class="listing-uni"><i class="fa-solid fa-graduation-cap"></i> Near UNZA</div>
+                        <h3>Zebra Shared Hostels</h3>
+                        <p class="listing-price">K1,800 / month</p>
+                        <p style="font-size: 0.9rem; color: #666; margin: 0.5rem 0 1rem;">
+                            <i class="fa-solid fa-location-dot"></i> Kalundu, Lusaka <br>
+                            <span style="font-size: 0.8rem; color: var(--secondary-dark);"><i
+                                    class="fa-solid fa-person-walking"></i> 0.6 km from campus</span>
+                        </p>
+                        <div style="display: flex; gap: 0.8rem; font-size: 0.8rem; color: #555; margin-bottom: 1rem;">
+                            <span><i class="fa-solid fa-bolt"></i> Solar Lighting</span>
+                            <span><i class="fa-solid fa-tv"></i> Common Room TV</span>
+                        </div>
+                        <a href="listing-detail.html?id=5" class="btn btn-primary" style="width: 100%">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Listing 6 -->
+                <div class="card listing-card">
+                    <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                        alt="Modern">
+                    <div class="listing-info">
+                        <div class="listing-uni"><i class="fa-solid fa-graduation-cap"></i> Near CBU</div>
+                        <h3>Central Kitwe Apartments</h3>
+                        <p class="listing-price">K2,200 / month</p>
+                        <p style="font-size: 0.9rem; color: #666; margin: 0.5rem 0 1rem;">
+                            <i class="fa-solid fa-location-dot"></i> Parklands, Kitwe <br>
+                            <span style="font-size: 0.8rem; color: var(--secondary-dark);"><i
+                                    class="fa-solid fa-car"></i> 1.5 km from campus</span>
+                        </p>
+                        <div style="display: flex; gap: 0.8rem; font-size: 0.8rem; color: #555; margin-bottom: 1rem;">
+                            <span><i class="fa-solid fa-water"></i> Borehole Water</span>
+                            <span><i class="fa-solid fa-shield-halved"></i> Gated Community</span>
+                        </div>
+                        <a href="listing-detail.html?id=6" class="btn btn-primary" style="width: 100%">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Listing 7 -->
+                <div class="card listing-card">
+                    <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                        alt="Shared">
+                    <div class="listing-info">
+                        <div class="listing-uni"><i class="fa-solid fa-graduation-cap"></i> Near Mulungushi</div>
+                        <h3>Kabwe Town Lodge</h3>
+                        <p class="listing-price">K950 / month</p>
+                        <p style="font-size: 0.9rem; color: #666; margin: 0.5rem 0 1rem;">
+                            <i class="fa-solid fa-location-dot"></i> Town Centre, Kabwe <br>
+                            <span style="font-size: 0.8rem; color: var(--secondary-dark);"><i
+                                    class="fa-solid fa-person-walking"></i> 1.8 km from campus</span>
+                        </p>
+                        <div style="display: flex; gap: 0.8rem; font-size: 0.8rem; color: #555; margin-bottom: 1rem;">
+                            <span><i class="fa-solid fa-bolt"></i> ZESCO Linked</span>
+                            <span><i class="fa-solid fa-faucet"></i> Inside Tap</span>
+                        </div>
+                        <a href="listing-detail.html?id=7" class="btn btn-primary" style="width: 100%">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Listing 8 -->
+                <div class="card listing-card">
+                    <img src="https://images.unsplash.com/photo-1513584684032-29f453a5c2ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                        alt="Cottage">
+                    <div class="listing-info">
+                        <div class="listing-uni"><i class="fa-solid fa-graduation-cap"></i> Near UNZA</div>
+                        <h3>Roma Student Single Room</h3>
+                        <p class="listing-price">K2,000 / month</p>
+                        <p style="font-size: 0.9rem; color: #666; margin: 0.5rem 0 1rem;">
+                            <i class="fa-solid fa-location-dot"></i> Roma, Lusaka <br>
+                            <span style="font-size: 0.8rem; color: var(--secondary-dark);"><i
+                                    class="fa-solid fa-car"></i> 2.5 km from campus</span>
+                        </p>
+                        <div style="display: flex; gap: 0.8rem; font-size: 0.8rem; color: #555; margin-bottom: 1rem;">
+                            <span><i class="fa-solid fa-shield-check"></i> Electric Fence</span>
+                            <span><i class="fa-solid fa-wifi"></i> Fiber Optic</span>
+                        </div>
+                        <a href="listing-detail.html?id=8" class="btn btn-primary" style="width: 100%">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Listing 9 -->
+                <div class="card listing-card">
+                    <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                        alt="Minimalist">
+                    <div class="listing-info">
+                        <div class="listing-uni"><i class="fa-solid fa-graduation-cap"></i> Near Cavendish</div>
+                        <h3>Town Center Accom</h3>
+                        <p class="listing-price">K1,400 / month</p>
+                        <p style="font-size: 0.9rem; color: #666; margin: 0.5rem 0 1rem;">
+                            <i class="fa-solid fa-location-dot"></i> Ben Bella Road, Lusaka <br>
+                            <span style="font-size: 0.8rem; color: var(--secondary-dark);"><i
+                                    class="fa-solid fa-person-walking"></i> 0.3 km from campus</span>
+                        </p>
+                        <div style="display: flex; gap: 0.8rem; font-size: 0.8rem; color: #555; margin-bottom: 1rem;">
+                            <span><i class="fa-solid fa-door-closed"></i> Self Contained</span>
+                            <span><i class="fa-solid fa-fan"></i> Ceiling Fan</span>
+                        </div>
+                        <a href="listing-detail.html?id=9" class="btn btn-primary" style="width: 100%">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Listing 10 -->
+                <div class="card listing-card">
+                    <img src="https://images.unsplash.com/photo-1499916156133-c276bc0a49e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                        alt="Backyard">
+                    <div class="listing-info">
+                        <div class="listing-uni"><i class="fa-solid fa-graduation-cap"></i> Near UNZA</div>
+                        <h3>Kalundu Shared Flats</h3>
+                        <p class="listing-price">K1,100 / month</p>
+                        <p style="font-size: 0.9rem; color: #666; margin: 0.5rem 0 1rem;">
+                            <i class="fa-solid fa-location-dot"></i> Kalundu, Lusaka <br>
+                            <span style="font-size: 0.8rem; color: var(--secondary-dark);"><i
+                                    class="fa-solid fa-person-walking"></i> 0.7 km from campus</span>
+                        </p>
+                        <div style="display: flex; gap: 0.8rem; font-size: 0.8rem; color: #555; margin-bottom: 1rem;">
+                            <span><i class="fa-solid fa-utensils"></i> Shared Kitchen</span>
+                            <span><i class="fa-solid fa-sink"></i> Submerged Taps</span>
+                        </div>
+                        <a href="listing-detail.html?id=10" class="btn btn-primary" style="width: 100%">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Listing 11 -->
+                <div class="card listing-card">
+                    <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                        alt="Shared Kitchen">
+                    <div class="listing-info">
+                        <div class="listing-uni"><i class="fa-solid fa-graduation-cap"></i> Near CBU</div>
+                        <h3>Riverside Single Rooms</h3>
+                        <p class="listing-price">K1,600 / month</p>
+                        <p style="font-size: 0.9rem; color: #666; margin: 0.5rem 0 1rem;">
+                            <i class="fa-solid fa-location-dot"></i> Riverside, Kitwe <br>
+                            <span style="font-size: 0.8rem; color: var(--secondary-dark);"><i
+                                    class="fa-solid fa-person-walking"></i> 0.4 km from campus</span>
+                        </p>
+                        <div style="display: flex; gap: 0.8rem; font-size: 0.8rem; color: #555; margin-bottom: 1rem;">
+                            <span><i class="fa-solid fa-bolt"></i> Solar Lighting</span>
+                            <span><i class="fa-solid fa-wifi"></i> Fiber WiFi</span>
+                        </div>
+                        <a href="listing-detail.html?id=11" class="btn btn-primary" style="width: 100%">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Listing 12 -->
+                <div class="card listing-card">
+                    <img src="https://images.unsplash.com/photo-1505691938895-1758d7eaa511?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                        alt="Dorm">
+                    <div class="listing-info">
+                        <div class="listing-uni"><i class="fa-solid fa-graduation-cap"></i> Near Mulungushi</div>
+                        <h3>Chowa Shared Village</h3>
+                        <p class="listing-price">K750 / month</p>
+                        <p style="font-size: 0.9rem; color: #666; margin: 0.5rem 0 1rem;">
+                            <i class="fa-solid fa-location-dot"></i> Chowa, Kabwe <br>
+                            <span style="font-size: 0.8rem; color: var(--secondary-dark);"><i
+                                    class="fa-solid fa-bus"></i> 3.0 km from campus</span>
+                        </p>
+                        <div style="display: flex; gap: 0.8rem; font-size: 0.8rem; color: #555; margin-bottom: 1rem;">
+                            <span><i class="fa-solid fa-users"></i> Big Common Room</span>
+                            <span><i class="fa-solid fa-faucet"></i> Outside Tap</span>
+                        </div>
+                        <a href="listing-detail.html?id=12" class="btn btn-primary" style="width: 100%">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Listing 13 -->
+                <div class="card listing-card">
+                    <img src="https://images.unsplash.com/photo-1512918766671-ad650b9b736d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                        alt="High-end">
+                    <div class="listing-info">
+                        <div class="listing-uni"><i class="fa-solid fa-graduation-cap"></i> Near Cavendish</div>
+                        <h3>Longacres Single Studios</h3>
+                        <p class="listing-price">K3,200 / month</p>
+                        <p style="font-size: 0.9rem; color: #666; margin: 0.5rem 0 1rem;">
+                            <i class="fa-solid fa-location-dot"></i> Longacres, Lusaka <br>
+                            <span style="font-size: 0.8rem; color: var(--secondary-dark);"><i
+                                    class="fa-solid fa-person-walking"></i> 1.0 km from campus</span>
+                        </p>
+                        <div style="display: flex; gap: 0.8rem; font-size: 0.8rem; color: #555; margin-bottom: 1rem;">
+                            <span><i class="fa-solid fa-snowflake"></i> Air Conditioned</span>
+                            <span><i class="fa-solid fa-wifi"></i> Fiber WiFi</span>
+                        </div>
+                        <a href="listing-detail.html?id=13" class="btn btn-primary" style="width: 100%">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Listing 14 -->
+                <div class="card listing-card">
+                    <img src="https://images.unsplash.com/photo-1544097692-340cb1f80812?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                        alt="Bedroom">
+                    <div class="listing-info">
+                        <div class="listing-uni"><i class="fa-solid fa-graduation-cap"></i> Near UNZA</div>
+                        <h3>Handsworth Boarding Single</h3>
+                        <p class="listing-price">K1,700 / month</p>
+                        <p style="font-size: 0.9rem; color: #666; margin: 0.5rem 0 1rem;">
+                            <i class="fa-solid fa-location-dot"></i> Handsworth Park, Lusaka <br>
+                            <span style="font-size: 0.8rem; color: var(--secondary-dark);"><i
+                                    class="fa-solid fa-person-walking"></i> 0.9 km from campus</span>
+                        </p>
+                        <div style="display: flex; gap: 0.8rem; font-size: 0.8rem; color: #555; margin-bottom: 1rem;">
+                            <span><i class="fa-solid fa-shield-halved"></i> 24h Guard</span>
+                            <span><i class="fa-solid fa-bolt"></i> Solar Lighting</span>
+                        </div>
+                        <a href="listing-detail.html?id=14" class="btn btn-primary" style="width: 100%">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Peza Nyumba</h4>
+                    <p style="color: #ccc; font-size: 0.9rem;">Your trusted platform for finding accommodation and
+                        shopping essentials near Zambian universities.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="listings.html">Find Accommodation</a></li>
+                        <li><a href="shop.html">Shop Groceries</a></li>
+                        <li><a href="marketplace.html">Student Marketplace</a></li>
+                        <li><a href="signup.html?role=landlord">List Property</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Universities</h4>
+                    <ul>
+                        <li><a href="listings.html?uni=unza">UNZA</a></li>
+                        <li><a href="listings.html?uni=cbu">CBU</a></li>
+                        <li><a href="listings.html?uni=mulungushi">Mulungushi</a></li>
+                        <li><a href="listings.html?uni=cavendish">Cavendish</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-envelope"></i> support@pezanyumba.zm</li>
+                        <li><i class="fa-solid fa-phone"></i> +260 97 000 0000</li>
+                        <li><i class="fa-brands fa-whatsapp"></i> +260 96 000 0000</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 Peza Nyumba. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
+

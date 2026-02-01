@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Peza Nyumba</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="auth.js"></script>
+    <style>
+        body {
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .auth-card {
+            max-width: 450px;
+            width: 100%;
+            padding: 2rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .highlight-text {
+            background: #fef9c3;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card auth-card fade-in">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <a href="index.html" class="logo" style="justify-content: center; margin-bottom: 1rem;">
+                <i class="fa-solid fa-house-chimney"></i> Peza Nyumba
+            </a>
+            <h2>Create Account</h2>
+            <p style="color: grey;">Join our community today</p>
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+            <button id="studentBtn" class="btn btn-primary" style="flex: 1; border-radius: 999px;">Student</button>
+            <button id="landlordBtn" class="btn btn-outline" style="flex: 1; border-radius: 999px;">Landlord</button>
+        </div>
+
+        <form id="signup-form">
+            <input type="hidden" name="role" id="user-role" value="student">
+
+            <div style="margin-bottom: 1rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Full Name</label>
+                <input type="text" id="full-name" placeholder="John Doe" required
+                    style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius);">
+            </div>
+
+            <div style="margin-bottom: 1rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email Address</label>
+                <input type="email" id="email" placeholder="john@example.com" required
+                    style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius);">
+            </div>
+
+            <div style="margin-bottom: 1rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Phone Number</label>
+                <input type="tel" id="phone" placeholder="+260..." required
+                    style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius);">
+            </div>
+
+            <div id="university-field" style="margin-bottom: 1rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">University</label>
+                <select id="university-select" required
+                    style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius);">
+                    <option value="">Select University</option>
+                    <option value="unza">UNZA</option>
+                    <option value="cbu">CBU</option>
+                    <option value="mul">Mulungushi</option>
+                    <option value="cav">Cavendish</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 1rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Password</label>
+                <input type="password" id="password" placeholder="••••••••" required
+                    style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius);">
+            </div>
+
+            <div style="margin-bottom: 1rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Confirm Password</label>
+                <input type="password" id="confirm-password" placeholder="••••••••" required
+                    style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius);">
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+                <label
+                    style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.85rem; cursor: pointer;">
+                    <input type="checkbox" required style="margin-top: 0.2rem;">
+                    <span>I agree to the <a href="#" id="viewTerms"
+                            style="color: var(--primary); font-weight: 600;">Terms of Service</a> and <a href="#"
+                            id="viewPrivacy" style="color: var(--primary); font-weight: 600;">Privacy Policy</a></span>
+                </label>
+            </div>
+
+            <div id="error-message"
+                style="color: #dc2626; font-size: 0.9rem; margin-bottom: 1rem; display: none; text-align: center;">
+            </div>
+
+            <button type="submit" id="signup-btn" class="btn btn-primary" style="width: 100%;">Create Account</button>
+        </form>
+
+        <div style="text-align: center; margin: 1.5rem 0; position: relative;">
+            <hr style="border: 0; border-top: 1px solid #e5e7eb;">
+            <span
+                style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: white; padding: 0 0.5rem; color: #6b7280; font-size: 0.8rem;">OR</span>
+        </div>
+
+        <button class="btn btn-outline"
+            style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" width="20">
+            Sign up with Google
+        </button>
+
+        <p style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem;">
+            Already have an account? <a href="login.html" style="color: var(--primary); font-weight: 600;">Log in</a>
+        </p>
+    </div>
+
+    <!-- Terms and Policy Modal -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content fade-in">
+            <button id="closeModal"
+                style="position: absolute; top: 1rem; right: 1rem; background: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            <h2 id="modalTitle" style="color: var(--primary); margin-bottom: 1.5rem;">Terms of Service</h2>
+            <div id="modalBody" style="line-height: 1.8;">
+                <!-- Content will be injected -->
+            </div>
+            <div style="margin-top: 2rem; text-align: right;">
+                <button onclick="document.getElementById('termsModal').style.display='none'" class="btn btn-primary">I
+                    Understand</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Role Selection
+        const studentBtn = document.getElementById('studentBtn');
+        const landlordBtn = document.getElementById('landlordBtn');
+        const userRoleInput = document.getElementById('user-role');
+        const universityField = document.getElementById('university-field');
+        const universitySelect = document.getElementById('university-select');
+
+        studentBtn.addEventListener('click', () => {
+            userRoleInput.value = 'student';
+            studentBtn.classList.replace('btn-outline', 'btn-primary');
+            landlordBtn.classList.replace('btn-primary', 'btn-outline');
+            universityField.style.display = 'block';
+            universitySelect.required = true;
+        });
+
+        landlordBtn.addEventListener('click', () => {
+            userRoleInput.value = 'landlord';
+            landlordBtn.classList.replace('btn-outline', 'btn-primary');
+            studentBtn.classList.replace('btn-primary', 'btn-outline');
+            universityField.style.display = 'none';
+            universitySelect.required = false;
+        });
+
+        // Modal Logic
+        const termsModal = document.getElementById('termsModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        const viewTerms = document.getElementById('viewTerms');
+        const viewPrivacy = document.getElementById('viewPrivacy');
+        const closeModal = document.getElementById('closeModal');
+
+        const termsContent = `
+            <p>Welcome to Peza Nyumba. By using our platform, you agree to:</p>
+            <ul>
+                <li><span class="highlight-text">Accurate Listings:</span> Landlords must provide true and accurate information about their properties.</li>
+                <li><span class="highlight-text">Safety First:</span> Users are responsible for their own safety during physical viewings.</li>
+                <li><span class="highlight-text">Prohibited Conduct:</span> Any form of harassment or scamming will result in immediate termination of your account.</li>
+                <li><span class="highlight-text">Listing Fees:</span> Certain marketplace advertisements attract a service fee.</li>
+            </ul>
+        `;
+
+        const privacyContent = `
+            <p>Your privacy is important to us. We collect data to:</p>
+            <ul>
+                <li><span class="highlight-text">Facilitate Connections:</span> Share contact details between interested students and landlords/sellers.</li>
+                <li><span class="highlight-text">Improve Service:</span> Analyze how you use our platform to make it better.</li>
+                <li><span class="highlight-text">Security:</span> Verify accounts to keep the community safe.</li>
+            </ul>
+            <p>We <span class="highlight-text">NEVER</span> sell your personal data to third-party advertisers.</p>
+        `;
+
+        viewTerms.onclick = (e) => {
+            e.preventDefault();
+            modalTitle.innerText = "Terms of Service";
+            modalBody.innerHTML = termsContent;
+            termsModal.style.display = 'flex';
+        };
+
+        viewPrivacy.onclick = (e) => {
+            e.preventDefault();
+            modalTitle.innerText = "Privacy Policy";
+            modalBody.innerHTML = privacyContent;
+            termsModal.style.display = 'flex';
+        };
+
+        closeModal.onclick = () => termsModal.style.display = 'none';
+        window.onclick = (e) => { if (e.target === termsModal) termsModal.style.display = 'none'; };
+
+        // Form Submit
+        const signupForm = document.getElementById('signup-form');
+        const signupBtn = document.getElementById('signup-btn');
+        const errorMessage = document.getElementById('error-message');
+        const password = document.getElementById('password');
+        const confirmPassword = document.getElementById('confirm-password');
+
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            errorMessage.style.display = 'none';
+
+            if (password.value !== confirmPassword.value) {
+                errorMessage.innerText = "Passwords do not match!";
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            signupBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Creating Account...';
+            signupBtn.disabled = true;
+
+            const userData = {
+                name: document.getElementById('full-name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                university: universitySelect.value,
+                password: password.value,
+                role: userRoleInput.value
+            };
+
+            const result = await window.PezaAuth.register(userData);
+
+            if (result.success) {
+                window.location.href = 'index.html';
+            } else {
+                errorMessage.innerText = result.message;
+                errorMessage.style.display = 'block';
+                signupBtn.innerHTML = 'Create Account';
+                signupBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>
+

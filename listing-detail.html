@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listing Details - Peza Nyumba</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="auth.js"></script>
+    <style>
+        .gallery-main {
+            position: relative;
+            cursor: zoom-in;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            height: 450px;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-main:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-thumbs {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .thumb {
+            width: 100px;
+            height: 70px;
+            flex-shrink: 0;
+            border-radius: var(--radius);
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+            object-fit: cover;
+        }
+
+        .thumb.active {
+            border-color: var(--primary);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 80%;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            border-radius: var(--radius);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+            pointer-events: none;
+        }
+
+        .nav-arrow {
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            pointer-events: auto;
+            background: rgba(0, 0, 0, 0.3);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .nav-arrow:hover {
+            background: var(--primary);
+        }
+
+        .gallery-nav-main {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 1rem;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Inquiry Styles */
+        .inquiry-opt:hover {
+            background: #f8fafc;
+            color: var(--primary) !important;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(10px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes ring {
+            0% {
+                transform: rotate(0);
+            }
+
+            10% {
+                transform: rotate(15deg);
+            }
+
+            20% {
+                transform: rotate(-15deg);
+            }
+
+            30% {
+                transform: rotate(10deg);
+            }
+
+            40% {
+                transform: rotate(-10deg);
+            }
+
+            50% {
+                transform: rotate(0);
+            }
+
+            100% {
+                transform: rotate(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo"> <i class="fa-solid fa-house-chimney"></i> Peza Nyumba </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="listings.html">Accommodation</a></li>
+                    <li><a href="shop.html">Groceries</a></li>
+                    <li><a href="marketplace.html">Marketplace</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <a href="login.html" class="btn btn-primary">Log In</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="listing-detail section-padding" style="padding-top: 120px;">
+        <div class="container">
+            <a href="listings.html"
+                style="color: var(--primary); margin-bottom: 2rem; display: inline-block; font-weight: 600;">
+                <i class="fa-solid fa-arrow-left"></i> Back to Browse
+            </a>
+
+            <div class="grid grid-2" style="grid-template-columns: 1.8fr 1fr; align-items: start; gap: 3rem;">
+
+                <!-- Left Column -->
+                <div>
+                    <div class="gallery-container">
+                        <div class="gallery-main" id="mainGallery">
+                            <img id="currentImg" src="Media/Boarding house 1/images.jpg" alt="Main View">
+
+                            <div class="gallery-nav-main">
+                                <div class="nav-arrow" onclick="event.stopPropagation(); changeImage(-1)"><i
+                                        class="fa-solid fa-chevron-left"></i></div>
+                                <div class="nav-arrow" onclick="event.stopPropagation(); changeImage(1)"><i
+                                        class="fa-solid fa-chevron-right"></i></div>
+                            </div>
+                        </div>
+                        <div class="gallery-thumbs" id="thumbContainer">
+                            <img class="thumb active" src="Media/Boarding house 1/1.jpg" onclick="updateMain(0)">
+                            <img class="thumb" src="Media/Boarding house 1/images.jpg" onclick="updateMain(1)">
+                            <img class="thumb" src="Media/Boarding house 1/mages.jpg" onclick="updateMain(2)">
+                            <img class="thumb" src="Media/Boarding house 1/1.jpg" onclick="updateMain(3)">
+                            <img class="thumb" src="Media/Boarding house 1/" onclick="updateMain(4)">
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem;">
+                        <h1 id="listingName">Green Valley Boarding House</h1>
+                        <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: 0.5rem;">
+                            <i class="fa-solid fa-location-dot" style="color: var(--primary);"></i> Great East Road,
+                            Near UNZA Main Campus
+                        </p>
+
+                        <div class="card" style="margin-top: 2rem;">
+                            <h3 style="margin-bottom: 1.5rem;">Key Features</h3>
+                            <div
+                                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.5rem;">
+                                <div style="display: flex; align-items: center; gap: 0.8rem;">
+                                    <i class="fa-solid fa-wifi" style="color: var(--primary); font-size: 1.2rem;"></i>
+                                    <span style="font-size: 0.95rem;">High-Speed WiFi</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 0.8rem;">
+                                    <i class="fa-solid fa-bolt" style="color: var(--primary); font-size: 1.2rem;"></i>
+                                    <span style="font-size: 0.95rem;">Solar Backup</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 0.8rem;">
+                                    <i class="fa-solid fa-shield-halved"
+                                        style="color: var(--primary); font-size: 1.2rem;"></i>
+                                    <span style="font-size: 0.95rem;">24h Security</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 0.8rem;">
+                                    <i class="fa-solid fa-water" style="color: var(--primary); font-size: 1.2rem;"></i>
+                                    <span style="font-size: 0.95rem;">Borehole Water</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 0.8rem;">
+                                    <i class="fa-solid fa-bus" style="color: var(--primary); font-size: 1.2rem;"></i>
+                                    <span style="font-size: 0.95rem;">Campus Shuttle</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 0.8rem;">
+                                    <i class="fa-solid fa-couch" style="color: var(--primary); font-size: 1.2rem;"></i>
+                                    <span style="font-size: 0.95rem;">Fully Furnished</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card" style="margin-top: 2rem;">
+                            <h3 style="margin-bottom: 1rem;">Property Description</h3>
+                            <p style="line-height: 1.8; color: var(--text-main); font-size: 0.95rem;">
+                                A clean and well-maintained facility offering a safe, quiet, and conducive environment
+                                for successful studying. Located just 5 minutes walk from campus.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="card"
+                    style="position: sticky; top: 120px; box-shadow: var(--shadow-lg); border: 1px solid var(--primary-light);">
+                    <div
+                        style="text-align: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);">
+                        <div style="font-size: 2rem; font-weight: 800; color: var(--primary);">K1,500</div>
+                        <div
+                            style="color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">
+                            Monthly Rent</div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <button type="button" id="reserveBtn" class="btn btn-primary" onclick="handleReservation()"
+                            style="width: 100%; padding: 1.2rem; font-size: 1.1rem; border-radius: 12px; transition: all 0.3s;">
+                            Reserve a Space
+                        </button>
+
+                        <button type="button" id="bookmarkBtn" class="btn btn-outline" onclick="handleBookmark()"
+                            style="width: 100%; padding: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.8rem; border-radius: 12px; transition: 0.3s;">
+                            <i class="fa-regular fa-heart"></i> Add to Favorites
+                        </button>
+
+                        <div style="position: relative;">
+                            <button type="button" id="inquiryBtn" class="btn btn-outline"
+                                onclick="toggleInquiryOptions()"
+                                style="width: 100%; padding: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.8rem; border-radius: 12px; width: 100%;">
+                                <i class="fa-solid fa-circle-question"></i> Make an Inquiry
+                            </button>
+
+                            <div id="inquiryOptions"
+                                style="display: none; position: absolute; bottom: 100%; left: 0; width: 100%; background: white; border-radius: 12px; box-shadow: var(--shadow-lg); border: 1px solid var(--border); margin-bottom: 10px; z-index: 100; overflow: hidden; animation: slideUp 0.3s ease;">
+                                <a href="https://wa.me/260973279486" class="inquiry-opt"
+                                    style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-bottom: 1px solid var(--border); transition: 0.2s;">
+                                    <i class="fa-brands fa-whatsapp" style="color: #25D366; font-size: 1.2rem;"></i>
+                                    WhatsApp Team
+                                </a>
+                                <a href="tel:+260973279486" class="inquiry-opt"
+                                    style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-bottom: 1px solid var(--border); transition: 0.2s;">
+                                    <i class="fa-solid fa-phone" style="color: var(--primary); font-size: 1.1rem;"></i>
+                                    Call PN Team
+                                </a>
+                                <a href="sms:+260973279486" class="inquiry-opt"
+                                    style="display: flex; align-items: center; gap: 1rem; padding: 1rem; transition: 0.2s;">
+                                    <i class="fa-solid fa-message"
+                                        style="color: var(--secondary); font-size: 1.1rem;"></i> Send SMS
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content fade-in">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img id="lightboxImg" src="">
+            <div class="lightbox-nav">
+                <div class="nav-arrow" onclick="changeLightbox(-1)"><i class="fa-solid fa-chevron-left"></i></div>
+                <div class="nav-arrow" onclick="changeLightbox(1)"><i class="fa-solid fa-chevron-right"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const images = [
+            "https://images.unsplash.com/photo-1596276020528-3d120fa2c4d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1484101403633-562f65bd89aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+        ];
+
+        let currentIndex = 0;
+
+        function updateMain(index) {
+            currentIndex = index;
+            const mainImg = document.getElementById('currentImg');
+            mainImg.src = images[index];
+
+            const thumbs = document.querySelectorAll('.thumb');
+            thumbs.forEach(t => t.classList.remove('active'));
+            thumbs[index].classList.add('active');
+        }
+
+        function changeImage(step) {
+            currentIndex = (currentIndex + step + images.length) % images.length;
+            updateMain(currentIndex);
+        }
+
+        document.getElementById('mainGallery').addEventListener('click', () => {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            lightboxImg.src = images[currentIndex];
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeLightbox(step) {
+            currentIndex = (currentIndex + step + images.length) % images.length;
+            document.getElementById('lightboxImg').src = images[currentIndex];
+            updateMain(currentIndex);
+        }
+
+        // Reservation & Inquiry Logic
+        async function initStatus() {
+            if (!PezaAuth.isAuthenticated()) return;
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const listingId = urlParams.get('id') || '1';
+            const userId = PezaAuth.user._id;
+
+            // Check Reservation Status
+            try {
+                const res = await fetch(`http://localhost:3000/reservations/check/${userId}/${listingId}`);
+                const data = await res.json();
+                const btn = document.getElementById('reserveBtn');
+
+                if (data && data.status === 'pending') {
+                    btn.disabled = true;
+                    btn.innerHTML = '<i class="fa-solid fa-clock-rotate-left"></i> Checking for availability';
+                    btn.style.background = '#94a3b8';
+                } else if (data && data.status === 'available') {
+                    btn.innerHTML = '<i class="fa-solid fa-check-circle"></i> Space Available';
+                    btn.style.background = '#10b981';
+                    PezaAuth.showBell();
+
+                    // Add Payment Notice
+                    const noticeId = 'payment-notice';
+                    if (!document.getElementById(noticeId)) {
+                        const notice = document.createElement('div');
+                        notice.id = noticeId;
+                        notice.className = 'card fade-in';
+                        notice.style.marginTop = '1rem';
+                        notice.style.background = '#fffbeb';
+                        notice.style.border = '1px solid #fcd34d';
+                        notice.innerHTML = `
+                            <p style="font-size: 0.85rem; color: #92400e; font-weight: 600;">
+                                <i class="fa-solid fa-circle-info"></i> Booking Approved!
+                            </p>
+                            <p style="font-size: 0.8rem; color: #b45309; margin-top: 5px;">
+                                Please proceed to pay <strong>70% (K1,050)</strong> to secure your space. 
+                                The remaining 30% is payable upon moving in.
+                            </p>
+                            <button class="btn btn-primary btn-sm" style="width: 100%; margin-top: 0.8rem;">Pay Deposit Now</button>
+                        `;
+                        btn.parentElement.appendChild(notice);
+                    }
+                }
+            } catch (err) { console.error(err); }
+
+            // Check Bookmark Status
+            if (PezaAuth.user.bookmarks && PezaAuth.user.bookmarks.includes(listingId)) {
+                const bBtn = document.getElementById('bookmarkBtn');
+                bBtn.innerHTML = '<i class="fa-solid fa-heart" style="color: #ef4444;"></i> Resource Saved';
+                bBtn.classList.add('active');
+            }
+        }
+
+        async function handleReservation() {
+            if (!PezaAuth.isAuthenticated()) {
+                alert("Please log in to reserve a space.");
+                window.location.href = `login.html?redirect=listing-detail.html${window.location.search}`;
+                return;
+            }
+
+            const btn = document.getElementById('reserveBtn');
+            const urlParams = new URLSearchParams(window.location.search);
+            const listingId = urlParams.get('id') || '1';
+            const listingName = document.getElementById('listingName').innerText;
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Checking for availability...';
+            btn.style.background = '#94a3b8';
+
+            try {
+                const response = await fetch(`http://localhost:3000/reservations`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        userId: PezaAuth.user._id,
+                        listingId: listingId,
+                        listingName: listingName,
+                        price: "K1,500",
+                        userName: PezaAuth.user.name,
+                        userPhone: PezaAuth.user.phone,
+                        userUniversity: PezaAuth.user.university
+                    })
+                });
+
+                if (response.ok) {
+                    btn.innerHTML = '<i class="fa-solid fa-clock-rotate-left"></i> Checking for availability';
+                }
+            } catch (err) {
+                console.error(err);
+                btn.disabled = false;
+                btn.innerHTML = 'Reserve a Space';
+                btn.style.background = 'var(--primary)';
+            }
+        }
+
+        async function handleBookmark() {
+            if (!PezaAuth.isAuthenticated()) {
+                alert("Please log in to bookmark houses.");
+                return;
+            }
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const listingId = urlParams.get('id') || '1';
+            const btn = document.getElementById('bookmarkBtn');
+
+            try {
+                const res = await fetch('http://localhost:3000/users/toggle-bookmark', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userId: PezaAuth.user._id, listingId })
+                });
+                const updatedUser = await res.json();
+
+                if (res.ok) {
+                    PezaAuth.user = updatedUser;
+                    localStorage.setItem('peza_user', JSON.stringify(updatedUser));
+
+                    if (updatedUser.bookmarks.includes(listingId)) {
+                        btn.innerHTML = '<i class="fa-solid fa-heart" style="color: #ef4444;"></i> Resource Saved';
+                    } else {
+                        btn.innerHTML = '<i class="fa-regular fa-heart"></i> Add to Favorites';
+                    }
+                }
+            } catch (err) { console.error(err); }
+        }
+
+        function toggleInquiryOptions() {
+            const options = document.getElementById('inquiryOptions');
+            const isVisible = options.style.display === 'block';
+            options.style.display = isVisible ? 'none' : 'block';
+        }
+
+
+        // Close inquiry list when clicking outside
+        document.addEventListener('click', (e) => {
+            const options = document.getElementById('inquiryOptions');
+            const btn = document.getElementById('inquiryBtn');
+            if (options && !btn.contains(e.target) && !options.contains(e.target)) {
+                options.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") closeLightbox();
+            if (e.key === "ArrowRight") {
+                if (document.getElementById('lightbox').style.display === 'flex') changeLightbox(1);
+                else changeImage(1);
+            }
+            if (e.key === "ArrowLeft") {
+                if (document.getElementById('lightbox').style.display === 'flex') changeLightbox(-1);
+                else changeImage(-1);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initStatus();
+        });
+    </script>
+</body>
+
+</html>
+

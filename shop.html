@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groceries & Essentials - Peza Nyumba</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    </head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <i class="fa-solid fa-house-chimney"></i> Peza Nyumba
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="listings.html">Accommodation</a></li>
+                    <li><a href="shop.html" class="active">Groceries</a></li>
+                    <li><a href="marketplace.html">Marketplace</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <button class="btn btn-outline" id="cart-btn"><i class="fa-solid fa-cart-shopping"></i> Cart
+                        (0)</button>
+                    <a href="login.html" class="btn btn-primary" style="margin-left: 0.5rem;">Log In</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header"
+        style="padding-top: 120px; text-align: center; background: #fff7ed; padding-bottom: 2rem;">
+        <div class="container">
+            <h1>Student Grocery Service</h1>
+            <p>Order food and essentials delivered straight to your hostel.</p>
+        </div>
+    </section>
+
+    <section class="shop-page section-padding">
+        <div class="container">
+
+            <!-- Categories -->
+            <div id="category-filters"
+                style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap;">
+                <button class="btn btn-secondary filter-btn" data-filter="all">All</button>
+                <button class="btn btn-outline filter-btn" data-filter="food">Food & Snacks</button>
+                <button class="btn btn-outline filter-btn" data-filter="toiletries">Toiletries</button>
+                <button class="btn btn-outline filter-btn" data-filter="study">Study Essentials</button>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="grid grid-4" id="product-grid">
+
+                <!-- Product 1 -->
+                <div class="card product-card" data-category="food">
+                    <img src="Media/Groceries/HFC-Mealie-Meal.jpg" alt="Mealie Meal">
+                    <h4>Breakfast Mealie Meal (25kg)</h4>
+                    <p class="product-price" style="color: var(--primary); font-weight: 700; margin: 0.5rem 0;">K350.00
+                    </p>
+                    <div style="display: flex; gap: 0.5rem; justify-content: center;">
+                        <button class="btn btn-primary btn-add"
+                            style="padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="card product-card" data-category="food">
+                    <img src="Media/Groceries/cooking oil.jpg" alt="Cooking Oil">
+                    <h4>Cooking Oil (2L)</h4>
+                    <p class="product-price" style="color: var(--primary); font-weight: 700; margin: 0.5rem 0;">K120.00
+                    </p>
+                    <div style="display: flex; gap: 0.5rem; justify-content: center;">
+                        <button class="btn btn-primary btn-add"
+                            style="padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="card product-card" data-category="food">
+                    <img src="Media/Groceries/sugar.jpg" alt="Sugar">
+                    <h4>White Sugar (2kg)</h4>
+                    <p class="product-price" style="color: var(--primary); font-weight: 700; margin: 0.5rem 0;">K65.00
+                    </p>
+                    <div style="display: flex; gap: 0.5rem; justify-content: center;">
+                        <button class="btn btn-primary btn-add"
+                            style="padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="card product-card" data-category="food">
+                    <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Fruits & Veggies">
+                    <h4>Fruits & Veggies</h4>
+                    <p class="product-price" style="color: var(--primary); font-weight: 700; margin: 0.5rem 0;">K35.00
+                    </p>
+                    <div style="display: flex; gap: 0.5rem; justify-content: center;">
+                        <button class="btn btn-primary btn-add"
+                            style="padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="card product-card" data-category="food">
+                    <img src="https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Pasta / Spaghetti">
+                    <h4>Pasta / Spaghetti</h4>
+                    <p class="product-price" style="color: var(--primary); font-weight: 700; margin: 0.5rem 0;">K80.00
+                    </p>
+                    <div style="display: flex; gap: 0.5rem; justify-content: center;">
+                        <button class="btn btn-primary btn-add"
+                            style="padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 6 (New) -->
+                <div class="card product-card" data-category="food">
+                    <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Bananas">
+                    <h4>Fresh Bananas (Kg)</h4>
+                    <p class="product-price" style="color: var(--primary); font-weight: 700; margin: 0.5rem 0;">K25.00
+                    </p>
+                    <div style="display: flex; gap: 0.5rem; justify-content: center;">
+                        <button class="btn btn-primary btn-add"
+                            style="padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 7 (New) -->
+                <div class="card product-card" data-category="toiletries">
+                    <img src="https://images.unsplash.com/photo-1615485925694-a0391671ce99?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Laundry Soap">
+                    <h4>Laundry Bar Soap</h4>
+                    <p class="product-price" style="color: var(--primary); font-weight: 700; margin: 0.5rem 0;">K15.00
+                    </p>
+                    <div style="display: flex; gap: 0.5rem; justify-content: center;">
+                        <button class="btn btn-primary btn-add"
+                            style="padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 8 (New) -->
+                <div class="card product-card" data-category="study">
+                    <img src="https://images.unsplash.com/photo-1627483297929-37f416fec7cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Pens">
+                    <h4>Ballpoint Pens (Pack of 5)</h4>
+                    <p class="product-price" style="color: var(--primary); font-weight: 700; margin: 0.5rem 0;">K20.00
+                    </p>
+                    <div style="display: flex; gap: 0.5rem; justify-content: center;">
+                        <button class="btn btn-primary btn-add"
+                            style="padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Other Request Section -->
+            <div class="card" style="margin-top: 3rem; background: #e0f2fe;">
+                <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+                    <h3>Can't find what you need?</h3>
+                    <p style="margin-bottom: 1.5rem;">Tell us what you want, and we'll try to get it for you.</p>
+                    <form id="custom-request-form"
+                        style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                        <input type="text" id="custom-item" placeholder="Item Name (e.g., Sugar-2kg)"
+                            style="padding: 0.75rem; border-radius: var(--radius); border: 1px solid var(--border); flex: 2; min-width: 200px;">
+                        <input type="number" id="custom-qty" placeholder="Qty" min="0" max="10"
+                            style="padding: 0.75rem; border-radius: var(--radius); border: 1px solid var(--border); width: 80px;">
+                        <button type="submit" class="btn btn-primary">Add Request</button>
+                    </form>
+                </div>
+            </div>
+
+            <div
+                style="margin-top: 4rem; text-align: center; background: #f0fdf4; padding: 1rem; border-radius: var(--radius); color: #166534; border: 1px solid #bbf7d0;">
+                <i class="fa-solid fa-shield-halved"></i> <strong>Trusted Quality:</strong> All products are sourced
+                directly from trusted, verified Zambian stores and supermarkets.
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Cart Modal Overlay -->
+    <div id="cart-modal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; justify-content: center; align-items: center;">
+        <div class="card fade-in"
+            style="width: 90%; max-width: 500px; max-height: 90vh; overflow-y: auto; background: white; padding: 2rem; position: relative;">
+            <button id="close-cart"
+                style="position: absolute; top: 1rem; right: 1rem; background: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+
+            <h2 style="margin-bottom: 1.5rem; color: var(--primary);">Your Cart</h2>
+
+            <div id="cart-items-container" style="margin-bottom: 2rem;">
+                <!-- Items injected here JS -->
+                <p style="text-align: center; color: grey;">Your cart is empty.</p>
+            </div>
+
+            <div style="border-top: 1px solid #eee; padding-top: 1rem; margin-bottom: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.2rem;">
+                    <span>Total:</span>
+                    <span id="cart-total-display">K0.00</span>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+                <h4 style="margin-bottom: 0.5rem;">Payment Mode</h4>
+                <div style="display: flex; gap: 1rem; flex-direction: column;">
+                    <label
+                        style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem; border: 1px solid var(--border); border-radius: var(--radius);">
+                        <input type="radio" name="payment-mode" value="cash" checked>
+                        <span><i class="fa-solid fa-money-bill-wave" style="color: var(--primary);"></i> Cash on
+                            Delivery</span>
+                    </label>
+                    <label
+                        style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem; border: 1px solid var(--border); border-radius: var(--radius);">
+                        <input type="radio" name="payment-mode" value="airtel">
+                        <span><i class="fa-solid fa-mobile-screen" style="color: #ed1c24;"></i> Airtel Money</span>
+                    </label>
+                    <label
+                        style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem; border: 1px solid var(--border); border-radius: var(--radius);">
+                        <input type="radio" name="payment-mode" value="mtn">
+                        <span><i class="fa-solid fa-mobile-screen" style="color: #ffcc00;"></i> MTN MoMo</span>
+                    </label>
+                </div>
+            </div>
+
+            <button id="checkout-btn" class="btn btn-primary" style="width: 100%;">Confirm & Place Order</button>
+            <p id="order-status"
+                style="text-align: center; margin-top: 1rem; font-weight: 600; color: var(--primary); display: none;">
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Peza Nyumba</h4>
+                    <p style="color: #ccc; font-size: 0.9rem;">Your trusted platform for finding accommodation and
+                        shopping essentials near Zambian universities.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="listings.html">Accommodation</a></li>
+                        <li><a href="shop.html">Groceries</a></li>
+                        <li><a href="marketplace.html">Marketplace</a></li>
+                        <li><a href="signup.html?role=landlord">List Property</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-envelope"></i> info@pezanyumba.com</li>
+                        <li><i class="fa-solid fa-phone"></i> +260 973 279 486</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 Peza Nyumba Company. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="cart.js"></script>
+</body>
+
+</html>
+

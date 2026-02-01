@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marketplace - Peza Nyumba</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="auth.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <style>
+        .marketplace-header {
+            padding: 120px 0 40px;
+            background: #fffbeb;
+            text-align: center;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            font-size: 0.75rem;
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .product-price {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin: 0.5rem 0;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 900px;
+            width: 100%;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: flex;
+            position: relative;
+            max-height: 90vh;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            background: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-gallery {
+            width: 50%;
+            background: #f3f4f6;
+        }
+
+        .modal-body {
+            width: 50%;
+            padding: 2.5rem;
+            overflow-y: auto;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                flex-direction: column;
+            }
+
+            .modal-gallery,
+            .modal-body {
+                width: 100%;
+            }
+
+            .modal-gallery {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo"> <i class="fa-solid fa-house-chimney"></i> Peza Nyumba </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="listings.html">Accommodation</a></li>
+                    <li><a href="shop.html">Groceries</a></li>
+                    <li><a href="marketplace.html" class="active">Marketplace</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <a href="login.html" class="btn btn-outline">Log In</a>
+                    <a href="signup.html" class="btn btn-secondary">Sign Up</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="marketplace-header">
+        <div class="container">
+            <h1>Student Marketplace</h1>
+            <p>Buy and sell items within the student community.</p>
+        </div>
+    </div>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        class="product-img" alt="Textbook">
+                    <div class="product-info">
+                        <span class="product-category">Books</span>
+                        <h3>Medical Physiology Textbook</h3>
+                        <p class="product-price">K450</p>
+                        <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;"><i
+                                class="fa-solid fa-user"></i> Sold by Sarah M.</p>
+                        <button class="btn btn-outline" style="width: 100%"
+                            onclick="openProductModal('Physiology Textbook', 'K450', 'Hardcover 12th edition. Great condition, no markings within the pages. Essential for 2nd year med students.', 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'Sarah M.', '+260971234567')">View
+                            Product</button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        class="product-img" alt="Laptop">
+                    <div class="product-info">
+                        <span class="product-category">Electronics</span>
+                        <h3>HP Laptop - 8GB RAM</h3>
+                        <p class="product-price">K3,500</p>
+                        <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;"><i
+                                class="fa-solid fa-user"></i> Sold by Peter K.</p>
+                        <button class="btn btn-outline" style="width: 100%"
+                            onclick="openProductModal('HP Laptop', 'K3,500', 'Reliable HP Laptop with 8GB RAM and 256GB SSD. Good for assignments and light coding. Battery lasts 4 hours.', 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'Peter K.', '+260961234567')">View
+                            Product</button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1526170375885-4d8efbc9b455?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        class="product-img" alt="Camera">
+                    <div class="product-info">
+                        <span class="product-category">Hobbies</span>
+                        <h3>Fujifilm Instax Mini</h3>
+                        <p class="product-price">K1,200</p>
+                        <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;"><i
+                                class="fa-solid fa-user"></i> Sold by Jane D.</p>
+                        <button class="btn btn-outline" style="width: 100%"
+                            onclick="openProductModal('Instax Mini', 'K1,200', 'Barely used Instax Mini. Comes with a pack of 10 films. Great for capturing campus memories!', 'https://images.unsplash.com/photo-1526170375885-4d8efbc9b455?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'Jane D.', '+260951234567')">View
+                            Product</button>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 4rem; text-align: center; border-top: 1px solid var(--border); padding-top: 3rem;">
+                <h3 style="margin-bottom: 1rem;">Have something to sell?</h3>
+                <p style="margin-bottom: 2rem; color: var(--text-muted);">Reach hundreds of students instantly by
+                    posting your item here.</p>
+                <a href="sell-item.html" class="btn btn-primary" style="padding: 1rem 3rem; font-size: 1.1rem;">
+                    <i class="fa-solid fa-plus"></i> Sell an Item
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeProductModal()">&times;</span>
+            <div class="modal-gallery">
+                <div class="swiper">
+                    <div class="swiper-wrapper" id="modalSwiperWrapper">
+                        <!-- Swiper slides injected here -->
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <span id="modalCategory" class="product-category">Category</span>
+                <h2 id="modalTitle">Product Title</h2>
+                <p id="modalPrice" class="product-price">Price</p>
+                <div style="margin: 1.5rem 0; line-height: 1.6;">
+                    <h4 style="margin-bottom: 0.5rem;">Description</h4>
+                    <p id="modalDescription" style="color: #4b5563;">Detailed description goes here.</p>
+                </div>
+                <div style="border-top: 1px solid #e5e7eb; padding-top: 1.5rem;">
+                    <h4 style="margin-bottom: 0.5rem;">Seller Information</h4>
+                    <p id="modalSeller" style="font-weight: 600;">Full Name</p>
+                    <button id="modalCall" class="btn btn-primary" style="margin-top: 1rem; width: 100%"
+                        onclick="handleCallSeller()">
+                        <i class="fa-solid fa-phone"></i> Call Seller
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        let swiper;
+        let currentSellerPhone = "";
+
+        function handleCallSeller() {
+            if (window.PezaAuth && !window.PezaAuth.isAuthenticated()) {
+                alert("Please sign in to contact the seller.");
+                window.location.href = "login.html?redirect=marketplace.html";
+                return;
+            }
+            window.location.href = "tel:" + currentSellerPhone;
+        }
+
+        function openProductModal(title, price, description, images_str, seller, phone) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalPrice').innerText = price;
+            document.getElementById('modalDescription').innerText = description;
+            document.getElementById('modalSeller').innerText = seller;
+            currentSellerPhone = phone;
+
+            const wrapper = document.getElementById('modalSwiperWrapper');
+            wrapper.innerHTML = `
+                <div class="swiper-slide"><img src="${images_str}" alt="Product"></div>
+                <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Detail 1"></div>
+            `;
+
+            document.getElementById('productModal').style.display = 'flex';
+
+            if (swiper) swiper.destroy();
+            swiper = new Swiper('.swiper', {
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').style.display = 'none';
+        }
+
+        window.onclick = function (event) {
+            if (event.target == document.getElementById('productModal')) {
+                closeProductModal();
+            }
+        }
+    </script>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Peza Nyumba</h4>
+                    <p style="color: #ccc; font-size: 0.9rem;">Your trusted platform for finding accommodation and
+                        shopping essentials near Zambian universities.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="listings.html">Accommodation</a></li>
+                        <li><a href="shop.html">Groceries</a></li>
+                        <li><a href="marketplace.html">Marketplace</a></li>
+                        <li><a href="signup.html?role=landlord">List Property</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-envelope"></i> info@pezanyumba.com</li>
+                        <li><i class="fa-solid fa-phone"></i> +260 973 279 486</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 Peza Nyumba Company. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
+

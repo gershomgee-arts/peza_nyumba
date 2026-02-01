@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landlord Portal - Peza Nyumba</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="auth.js"></script>
+    <style>
+        .profile-container {
+            padding-top: 100px;
+            background: #f1f5f9;
+            min-height: 100vh;
+        }
+
+        .profile-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .profile-sidebar {
+            background: #1e293b;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            color: white;
+            height: fit-content;
+        }
+
+        .profile-sidebar a {
+            color: #cbd5e1;
+        }
+
+        .profile-sidebar a:hover,
+        .profile-sidebar a.active {
+            background: #334155;
+            color: white;
+        }
+
+        .profile-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 1rem;
+            text-decoration: none;
+            border-radius: var(--radius);
+            transition: 0.3s;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .stat-card h4 {
+            color: #64748b;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .stat-card .value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .property-item {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+        }
+
+        .property-img {
+            width: 100px;
+            height: 100px;
+            border-radius: var(--radius);
+            object-fit: cover;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .btn-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 992px) {
+            .profile-wrapper {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+                gap: 1.5rem;
+            }
+
+            .profile-sidebar {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 1.5rem;
+                padding: 1rem;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            .profile-sidebar>div:first-child {
+                margin-bottom: 0 !important;
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+            }
+
+            #landlord-avatar {
+                width: 50px !important;
+                height: 50px !important;
+                margin: 0 !important;
+                font-size: 1.2rem !important;
+            }
+
+            #landlord-name,
+            .profile-sidebar p {
+                display: none;
+            }
+
+            .sidebar-menu {
+                margin-top: 0;
+                display: flex;
+                gap: 0.5rem;
+            }
+
+            .sidebar-menu li {
+                margin-bottom: 0;
+            }
+
+            .sidebar-menu a {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .sidebar-menu a span {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo" style="color: var(--primary);"> <i
+                        class="fa-solid fa-house-chimney"></i> Peza Nyumba </a>
+                <div class="nav-buttons"></div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="profile-container">
+        <div class="profile-wrapper">
+            <aside class="profile-sidebar">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <div id="landlord-avatar"
+                        style="width: 80px; height: 80px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: #1e293b; font-size: 2rem; cursor: pointer; position: relative; overflow: hidden;"
+                        onclick="document.getElementById('avatar-upload').click()">
+                        <i class="fa-solid fa-user-tie"></i>
+                        <div
+                            style="position: absolute; bottom:0; width:100%; background: rgba(0,0,0,0.5); color:white; font-size:0.6rem; padding: 2px 0;">
+                            Edit</div>
+                    </div>
+                    <input type="file" id="avatar-upload" style="display: none;" accept="image/*">
+                    <h3 id="landlord-name">Landlord Portal</h3>
+                    <p style="font-size: 0.8rem; color: #94a3b8;">Premium Member</p>
+                </div>
+
+                <ul class="sidebar-menu">
+                    <li><a href="#" class="active" data-tab="dashboard"><i class="fa-solid fa-chart-line"></i>
+                            <span>Dashboard</span></a></li>
+                    <li><a href="#" data-tab="properties"><i class="fa-solid fa-building"></i>
+                            <span>Properties</span></a></li>
+                    <li><a href="#" data-tab="bookings"><i class="fa-solid fa-calendar-check"></i>
+                            <span>Bookings</span></a></li>
+                    <li><a href="#" data-tab="payments"><i class="fa-solid fa-wallet"></i> <span>Payments</span></a>
+                    </li>
+                    <li><a href="#" id="logout-landlord" style="color: #f87171;"><i class="fa-solid fa-power-off"></i>
+                            <span>Log Out</span></a></li>
+                </ul>
+            </aside>
+
+            <main>
+                <!-- Profile Completion Notification -->
+                <div id="complete-profile-notify" class="profile-card"
+                    style="background: #fffbeb; border-left: 4px solid #f59e0b; display: none;">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <i class="fa-solid fa-circle-exclamation" style="color: #d97706; font-size: 1.5rem;"></i>
+                        <div style="flex: 1;">
+                            <h4 style="color: #92400e;">Verify your identity with a photo</h4>
+                            <p style="color: #b45309; font-size: 0.85rem;">Profiles with pictures receive 3x more
+                                booking requests. Build trust with students today.</p>
+                        </div>
+                        <button class="btn btn-primary btn-sm"
+                            onclick="document.getElementById('avatar-upload').click()">Upload Photo</button>
+                    </div>
+                </div>
+
+                <!-- Dashboard -->
+                <div id="dashboard" class="tab-content active">
+                    <div class="stat-grid">
+                        <div class="stat-card">
+                            <h4>Total Earnings</h4>
+                            <div class="value">K12,450</div>
+                            <p style="color: #10b981; font-size: 0.8rem;">+12% from last month</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Active Listings</h4>
+                            <div class="value">3</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Pending Bookings</h4>
+                            <div class="value">5</div>
+                        </div>
+                    </div>
+
+                    <div class="profile-card">
+                        <h3>Recent Booking Requests</h3>
+                        <div style="margin-top: 1rem;">
+                            <div class="property-item" style="align-items: center; justify-content: space-between;">
+                                <div>
+                                    <h4 style="margin:0">Mubita Mulenga</h4>
+                                    <p style="font-size: 0.85rem; color: #64748b;">Requested Green Valley - Room 4</p>
+                                </div>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="btn btn-primary btn-sm">Approve</button>
+                                    <button class="btn btn-outline btn-sm">Decline</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Properties -->
+                <div id="properties" class="tab-content">
+                    <div class="profile-card">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                            <h3>My Listed Properties</h3>
+                            <a href="signup.html?role=landlord" class="btn btn-primary btn-sm">+ Add New</a>
+                        </div>
+
+                        <div class="property-item">
+                            <img src="Media/Boarding house 1/mages.jpg" class="property-img">
+                            <div style="flex: 1;">
+                                <h4 style="margin:0">Green Valley Boarding</h4>
+                                <p style="font-size: 0.85rem; color: #64748b;">UNZA Area • K1,500/mo</p>
+                                <div style="margin-top: 0.5rem;">
+                                    <span class="status-badge status-delivered" style="font-size: 0.7rem;">Active</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                <button class="btn btn-outline btn-sm"><i class="fa-solid fa-pen"></i></button>
+                                <button class="btn btn-outline btn-sm" style="color: #ef4444;"><i
+                                        class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payments -->
+                <div id="payments" class="tab-content">
+                    <div class="profile-card">
+                        <h3>Earnings Summary</h3>
+                        <canvas id="earningsChart"
+                            style="margin-top: 2rem; width: 100%; height: 200px; background: #f8fafc; display: block; border-radius: var(--radius);"></canvas>
+                        <div style="margin-top: 2rem;">
+                            <h4>Monthly Payouts</h4>
+                            <div class="history-item">
+                                <div>January 2026</div>
+                                <div style="font-weight: 600;">K4,500 <span
+                                        style="color: #10b981; font-size: 0.8rem; margin-left: 0.5rem;">Paid</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const tabs = document.querySelectorAll('[data-tab]');
+        const contents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = tab.getAttribute('data-tab');
+
+                tabs.forEach(t => {
+                    t.classList.remove('active');
+                    t.style.background = 'transparent';
+                });
+                contents.forEach(c => c.classList.remove('active'));
+
+                tab.classList.add('active');
+                tab.style.background = '#334155';
+                document.getElementById(target).classList.add('active');
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('peza_user'));
+            if (!user) { window.location.href = 'login.html'; return; }
+            document.getElementById('landlord-name').innerText = user.name || "Landlord";
+
+            // Handle Profile Picture Display & Notification
+            if (user.profilePicture) {
+                document.getElementById('landlord-avatar').innerHTML = `<img src="${user.profilePicture}" style="width:100%; height:100%; object-fit:cover;">`;
+            } else {
+                document.getElementById('complete-profile-notify').style.display = 'block';
+            }
+
+            // Profile Picture Upload Logic
+            document.getElementById('avatar-upload').addEventListener('change', async (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const formData = new FormData();
+                formData.append('file', file);
+
+                try {
+                    const uploadRes = await fetch('http://localhost:3000/uploads/file', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const uploadData = await uploadRes.json();
+
+                    const updateRes = await fetch('http://localhost:3000/users/profile-picture', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            userId: user._id,
+                            imageUrl: uploadData.url
+                        })
+                    });
+
+                    if (updateRes.ok) {
+                        user.profilePicture = uploadData.url;
+                        localStorage.setItem('peza_user', JSON.stringify(user));
+                        document.getElementById('landlord-avatar').innerHTML = `<img src="${uploadData.url}" style="width:100%; height:100%; object-fit:cover;">`;
+
+                        // Update top-right corner avatar
+                        const navAvatar = document.getElementById('nav-avatar-container');
+                        if (navAvatar) {
+                            navAvatar.innerHTML = `<img src="${uploadData.url}" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary);">`;
+                        }
+
+                        document.getElementById('complete-profile-notify').style.display = 'none';
+                        alert("Profile picture updated!");
+                    }
+                } catch (err) {
+                    console.error(err);
+                    alert("Upload failed.");
+                }
+            });
+        });
+
+        document.getElementById('logout-landlord').onclick = () => PezaAuth.logout();
+    </script>
+</body>
+
+</html>
+

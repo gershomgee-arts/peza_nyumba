@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell an Item - Peza Nyumba</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="auth.js"></script>
+    <style>
+        .sell-container {
+            max-width: 600px;
+            margin: 120px auto 50px;
+            padding: 2rem;
+        }
+
+        .upload-box {
+            border: 2px dashed var(--border);
+            padding: 2rem;
+            text-align: center;
+            border-radius: var(--radius);
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .upload-box:hover {
+            border-color: var(--primary);
+            background: #f0fdf4;
+        }
+
+        .note-box {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: var(--radius);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo"> <i class="fa-solid fa-house-chimney"></i> Peza Nyumba </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="listings.html">Accommodation</a></li>
+                    <li><a href="shop.html">Groceries</a></li>
+                    <li><a href="marketplace.html">Marketplace</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <a href="login.html" class="btn btn-outline">Log In</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card sell-container fade-in">
+            <h1 style="margin-bottom: 1rem;">Post an Item for Sale</h1>
+            <div class="note-box">
+                <p style="font-size: 0.9rem; color: #92400e;">
+                    <strong>Note:</strong> All products will be reviewed before being posted. Premium advertising on the
+                    main page incurs a small additional charge.
+                </p>
+            </div>
+
+            <form id="sell-form">
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Item Title *</label>
+                    <input type="text" id="item-title" placeholder="e.g. Psychology Textbook" required
+                        style="width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: var(--radius);">
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Category *</label>
+                        <select id="item-category" required
+                            style="width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: var(--radius);">
+                            <option value="">Select Category</option>
+                            <option>Electronics</option>
+                            <option>Books</option>
+                            <option>Furniture</option>
+                            <option>Clothing</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Price (ZMW) *</label>
+                        <input type="number" id="item-price" placeholder="0.00" required
+                            style="width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: var(--radius);">
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Product Description
+                        *</label>
+                    <textarea id="item-description" placeholder="Tell us more about the item's condition, age, etc."
+                        required rows="5"
+                        style="width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: var(--radius); font-family: inherit;"></textarea>
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Upload Pictures (Min 2
+                        .jpg) *</label>
+                    <input type="file" id="fileInput" multiple accept=".jpg" hidden>
+                    <div class="upload-box" onclick="document.getElementById('fileInput').click()">
+                        <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2rem; color: var(--primary);"></i>
+                        <p style="margin-top: 1rem; color: #666;">Click to upload images</p>
+                        <p style="font-size: 0.8rem; color: #999;">Supported formats: JPG only</p>
+                    </div>
+                    <div id="fileList" style="font-size: 0.85rem; color: var(--text-muted);"></div>
+                </div>
+
+                <button type="submit" class="btn btn-primary"
+                    style="width: 100%; padding: 1rem; font-size: 1.1rem;">Post
+                    Product for Review</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length < 2) {
+                alert("Please select at least 2 .jpg pictures.");
+                fileInput.value = "";
+                fileList.innerText = "";
+            } else {
+                fileList.innerText = `${fileInput.files.length} images selected.`;
+            }
+        });
+
+        document.getElementById('sell-form').onsubmit = async (e) => {
+            e.preventDefault();
+
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+
+            try {
+                btn.disabled = true;
+                btn.innerText = "Uploading...";
+
+                // 1. Prepare File Data
+                const formData = new FormData();
+                const files = document.getElementById('fileInput').files;
+
+                if (files.length < 2) {
+                    alert("Please select at least 2 pictures.");
+                    return;
+                }
+
+                for (let i = 0; i < files.length; i++) {
+                    formData.append('files', files[i]);
+                }
+
+                // 2. Upload to Backend
+                const response = await fetch('http://localhost:3000/uploads/multiple', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) throw new Error('Upload failed');
+
+                const uploadResult = await response.json();
+                console.log('Uploaded images:', uploadResult.files);
+
+                // 2.5 Save Product Details to Database
+                const productData = {
+                    title: document.getElementById('item-title').value,
+                    category: document.getElementById('item-category').value,
+                    price: Number(document.getElementById('item-price').value),
+                    description: document.getElementById('item-description').value,
+                    imageUrls: uploadResult.files.map(f => f.url),
+                    // Pull current user ID from auth
+                    ownerId: JSON.parse(localStorage.getItem('peza_user'))?._id
+                };
+
+                const productResponse = await fetch('http://localhost:3000/marketplace', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(productData)
+                });
+
+                if (!productResponse.ok) throw new Error('Failed to save product details');
+
+                // 3. Success
+                alert("Success! Your product has been submitted for review. Descriptions and images are now saved in the database.");
+                window.location.href = "marketplace.html";
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert("There was an error uploading your items. Please try again.");
+            } finally {
+                btn.disabled = false;
+                btn.innerText = originalText;
+            }
+        };
+    </script>
+</body>
+
+</html>
+

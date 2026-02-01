@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Peza Nyumba</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo"> <i class="fa-solid fa-house-chimney"></i> Peza Nyumba </a>
+                <ul class="nav-links">
+                    <li><a href="shop.html">Back to Shop</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="checkout section-padding" style="padding-top: 120px;">
+        <div class="container">
+            <div class="grid grid-2" id="checkout-content">
+
+                <!-- Order Summary -->
+                <div class="card">
+                    <h3>Your Order Summary</h3>
+                    <div id="cart-items" style="margin-top: 1rem; max-height: 300px; overflow-y: auto;">
+                        <!-- JS Insert Items Here -->
+                        <p style="text-align: center; color: grey;">Loading items...</p>
+                    </div>
+                    <hr style="margin: 1rem 0; border-top: 1px solid #eee;">
+                    <div
+                        style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.2rem; color: var(--primary);">
+                        <span>Total (ZMW)</span>
+                        <span id="cart-total">K0.00</span>
+                    </div>
+                    <div
+                        style="margin-top: 1rem; padding: 0.5rem; background: #f3f4f6; border-radius: var(--radius); font-size: 0.9rem;">
+                        <strong>Payment Mode:</strong> <span id="payment-mode-display">Cash on Delivery</span>
+                    </div>
+                </div>
+
+                <!-- Delivery Details Form -->
+                <div class="card">
+                    <h3>Delivery Details</h3>
+                    <form id="checkout-form">
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Phone Number</label>
+                            <input type="tel" placeholder="+260 97..." required
+                                style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius);">
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">University /
+                                Area</label>
+                            <select required
+                                style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius);">
+                                <option value="">Select Drop-off Point</option>
+                                <option value="unza_main">UNZA Main Campus</option>
+                                <option value="unza_ridgeway">UNZA Ridgeway</option>
+                                <option value="cbu">CBU Main Gate</option>
+                                <option value="mulungushi">Mulungushi</option>
+                                <option value="other">Other (Lusaka)</option>
+                            </select>
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Street Name / Hostel
+                                Name</label>
+                            <input type="text" placeholder="e.g. October Hostel" required
+                                style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius);">
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Room Number / House
+                                No.</label>
+                            <input type="text" placeholder="e.g. Room 12, Block C" required
+                                style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius);">
+                        </div>
+
+                        <button type="submit" id="place-order-btn" class="btn btn-primary" style="width: 100%;">Place
+                            Order</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Success Section (Hidden initially) -->
+            <div id="success-section" class="card fade-in"
+                style="display: none; max-width: 600px; margin: 0 auto; text-align: center; padding: 3rem;">
+                <div style="font-size: 4rem; color: var(--primary); margin-bottom: 1rem;">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <h2 style="margin-bottom: 1rem;">Order Placed Successfully!</h2>
+                <p style="color: grey; margin-bottom: 2rem;">Thank you for shopping with Peza Nyumba. Your order has
+                    been received.</p>
+
+                <div
+                    style="background: #f0fdf4; padding: 2rem; border-radius: var(--radius-lg); border: 2px dashed var(--primary); margin-bottom: 2rem;">
+                    <p style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: #166534;">Your
+                        Virtual Order Number</p>
+                    <h1 id="order-number" style="font-size: 3rem; margin: 0.5rem 0; color: var(--primary);">#PZ-....
+                    </h1>
+                </div>
+
+                <p style="font-size: 0.9rem; margin-bottom: 2rem;">Please keep this number safe. Use it when collecting
+                    your delivery.</p>
+                <a href="shop.html" class="btn btn-primary">Back to Shop</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PIN Modal -->
+    <div id="pin-modal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; justify-content: center; align-items: center;">
+        <div class="card fade-in"
+            style="width: 90%; max-width: 350px; background: white; padding: 2.5rem; text-align: center; border-radius: 20px;">
+            <div id="pin-brand-icon"
+                style="background: #ed1c24; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                <i class="fa-solid fa-lock" style="color: white; font-size: 1.5rem;"></i>
+            </div>
+            <h3 id="pin-modal-title" style="margin-bottom: 0.5rem;">Airtel Money PIN</h3>
+            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.5rem;">Enter your confidential 4-digit PIN to
+                authorize this transaction.</p>
+
+            <div style="display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 2rem;">
+                <input type="password" maxlength="1" class="pin-input"
+                    style="width: 45px; height: 50px; text-align: center; font-size: 1.5rem; border: 2px solid #ddd; border-radius: 10px;">
+                <input type="password" maxlength="1" class="pin-input"
+                    style="width: 45px; height: 50px; text-align: center; font-size: 1.5rem; border: 2px solid #ddd; border-radius: 10px;">
+                <input type="password" maxlength="1" class="pin-input"
+                    style="width: 45px; height: 50px; text-align: center; font-size: 1.5rem; border: 2px solid #ddd; border-radius: 10px;">
+                <input type="password" maxlength="1" class="pin-input"
+                    style="width: 45px; height: 50px; text-align: center; font-size: 1.5rem; border: 2px solid #ddd; border-radius: 10px;">
+            </div>
+
+            <button id="confirm-pin-btn" class="btn btn-primary" style="width: 100%; border: none;">Secure
+                Payment</button>
+            <button onclick="document.getElementById('pin-modal').style.display='none'"
+                style="background: none; border: none; color: #64748b; margin-top: 1rem; cursor: pointer;">Cancel</button>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotalEl = document.getElementById('cart-total');
+            const paymentModeDisplay = document.getElementById('payment-mode-display');
+            const checkoutContent = document.getElementById('checkout-content');
+            const successSection = document.getElementById('success-section');
+            const orderNumberEl = document.getElementById('order-number');
+            const placeOrderBtn = document.getElementById('place-order-btn');
+
+            // value from localStorage
+            const cart = JSON.parse(localStorage.getItem('peza_cart')) || [];
+            const paymentMode = localStorage.getItem('peza_payment_mode') || 'cash';
+
+            // Format payment mode text
+            let formattedMode = 'Cash on Delivery';
+            if (paymentMode === 'airtel') formattedMode = 'Airtel Money';
+            if (paymentMode === 'mtn') formattedMode = 'MTN MoMo';
+            paymentModeDisplay.innerText = formattedMode;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+                placeOrderBtn.disabled = true;
+            } else {
+                let html = '';
+                let total = 0;
+
+                cart.forEach((item) => {
+                    const priceNum = parseFloat(item.price);
+                    total += priceNum;
+                    html += `
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #f9f9f9;">
+                            <span>${item.title}</span> 
+                            <span>${item.priceText || 'K' + item.price}</span>
+                        </div>
+                    `;
+                });
+
+                cartItemsContainer.innerHTML = html;
+                cartTotalEl.innerText = `K${total.toFixed(2)}`;
+            }
+
+            // Handle Form Submit
+            document.getElementById('checkout-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (cart.length === 0) return;
+
+                if (paymentMode === 'airtel' || paymentMode === 'mtn') {
+                    showPinModal(paymentMode, e);
+                } else {
+                    submitOrder(e);
+                }
+            });
+
+            function showPinModal(mode, formEvent) {
+                const modal = document.getElementById('pin-modal');
+                const title = document.getElementById('pin-modal-title');
+                const brandIcon = document.getElementById('pin-brand-icon');
+                const confirmBtn = document.getElementById('confirm-pin-btn');
+
+                if (mode === 'airtel') {
+                    title.innerText = 'Airtel Money PIN';
+                    brandIcon.style.background = '#ed1c24';
+                    confirmBtn.style.background = '#ed1c24';
+                } else {
+                    title.innerText = 'MTN MoMo PIN';
+                    brandIcon.style.background = '#ffcc00';
+                    confirmBtn.style.background = '#ffcc00';
+                }
+
+                modal.style.display = 'flex';
+
+                const inputs = document.querySelectorAll('.pin-input');
+                inputs.forEach((input, index) => {
+                    input.value = '';
+                    input.addEventListener('input', () => {
+                        if (input.value && index < inputs.length - 1) inputs[index + 1].focus();
+                    });
+                });
+
+                confirmBtn.onclick = () => {
+                    let pin = "";
+                    inputs.forEach(i => pin += i.value);
+                    if (pin.length < 4) {
+                        alert("Please enter your 4-digit PIN.");
+                        return;
+                    }
+                    modal.style.display = 'none';
+                    submitOrder(formEvent);
+                };
+            }
+
+            async function submitOrder(e) {
+                placeOrderBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
+                placeOrderBtn.disabled = true;
+
+                const user = JSON.parse(localStorage.getItem('peza_user'));
+                const orderData = {
+                    userId: user?._id || null,
+                    customerName: user?.name || 'Guest User',
+                    items: cart.map(item => ({
+                        name: item.title,
+                        price: item.price,
+                        quantity: 1
+                    })),
+                    total: cart.reduce((sum, item) => sum + item.price, 0),
+                    paymentMethod: paymentMode,
+                    deliveryInfo: {
+                        phone: e.target.querySelector('input[type="tel"]').value,
+                        university: e.target.querySelector('select').value,
+                        address: e.target.querySelectorAll('input[type="text"]')[0].value + ', ' + e.target.querySelectorAll('input[type="text"]')[1].value
+                    }
+                };
+
+                try {
+                    const response = await fetch('http://localhost:3000/orders', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(orderData),
+                    });
+
+                    if (!response.ok) throw new Error('Order failed');
+
+                    const savedOrder = await response.json();
+
+                    setTimeout(() => {
+                        checkoutContent.style.display = 'none';
+                        successSection.style.display = 'block';
+                        orderNumberEl.innerText = savedOrder.receiptNumber;
+                        localStorage.removeItem('peza_cart');
+                    }, 800);
+                } catch (err) {
+                    console.error(err);
+                    alert("Order failed. Please try again.");
+                    placeOrderBtn.innerText = 'Place Order';
+                    placeOrderBtn.disabled = false;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
+

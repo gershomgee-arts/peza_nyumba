@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Peza Nyumba - Find Trusted Student Accommodation Near Zambian Universities.">
+    <title>Peza Nyumba | Student Accommodation & Essentials</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Loader -->
+    </div>
+
+    <!-- Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <i class="fa-solid fa-house-chimney"></i> Peza Nyumba
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="listings.html">Accommodation</a></li>
+                    <li><a href="shop.html">Groceries</a></li>
+                    <li><a href="marketplace.html">Marketplace</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+
+                <div class="nav-buttons">
+                    <a href="login.html" class="btn btn-outline">Log In</a>
+                    <a href="signup.html" class="btn btn-secondary">Create Account</a>
+                </div>
+
+                <div class="mobile-menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content reveal active">
+            <h1 style="font-size: 3.5rem; margin-bottom: 1.5rem;">Find Your Home Near Campus</h1>
+            <p style="font-size: 1.25rem; margin-bottom: 3rem; opacity: 0.9;">The most trusted platform for student
+                accommodation, marketplace, and groceries.</p>
+
+            <form class="search-bar btn-animate" action="listings.html" style="margin: 0 auto;">
+                <select name="university">
+                    <option value="all" selected>All Universities</option>
+                    <option value="unza">UNZA</option>
+                    <option value="cbu">CBU</option>
+                    <option value="mulungushi">Mulungushi</option>
+                    <option value="cavendish">Cavendish</option>
+                </select>
+
+                <input type="text" name="location" placeholder="Location (e.g., Kalingalinga)">
+
+                <select name="maxPrice">
+                    <option value="5000" selected>Max Price (ZMW)</option>
+                    <option value="500">500 ZMW</option>
+                    <option value="1000">1000 ZMW</option>
+                    <option value="2000">2000 ZMW</option>
+                    <option value="5000">5000+ ZMW</option>
+                </select>
+
+                <button type="submit" class="btn btn-primary">Find Accommodation</button>
+            </form>
+
+            <div style="margin-top: 2rem;">
+                <a href="signup.html?role=landlord" class="btn btn-outline"
+                    style="border-color: #fff; color: #fff;">List Your Property</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding" style="background: white;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;" class="reveal">
+                <h2 style="font-size: 2.5rem; color: var(--primary);">About Peza Nyumba</h2>
+                <div
+                    style="width: 80px; height: 4px; background: var(--secondary); margin: 1rem auto; border-radius: 2px;">
+                </div>
+            </div>
+
+            <div class="grid grid-2" style="gap: 4rem; align-items: start;">
+                <div class="reveal">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--text-dark);">Reliable Student Support</h3>
+                    <p style="line-height: 1.8; color: var(--text-muted); font-size: 1.1rem;">
+                        Peza Nyumba was founded to bridge the gap between students and safe, affordable living
+                        environments.
+                        We understand the challenges of finding the right boarding house, which is why we verify every
+                        listing
+                        on our platform. Our mission is to make student life seamless and focused on what truly matters:
+                        your education.
+                    </p>
+                </div>
+                <div class="reveal">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--text-dark);">Unified Campus Ecosystem</h3>
+                    <p style="line-height: 1.8; color: var(--text-muted); font-size: 1.1rem;">
+                        Beyond just housing, we provide an integrated ecosystem. From a community marketplace where you
+                        can buy
+                        second-hand textbooks to a grocery service that delivers essentials straight to your door.
+                        We are more than just a listing site; we are your ultimate campus companion.
+                    </p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 5rem;" class="reveal">
+                <a href="team.html" class="btn btn-primary btn-animate"
+                    style="padding: 1.2rem 3rem; font-size: 1.1rem;">
+                    <i class="fa-solid fa-users-viewfinder"></i> Meet the Team
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Listings -->
+    <section class="listings section-padding">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 3rem;" class="reveal">
+                <h2>Popular Accommodations</h2>
+                <p style="color: var(--text-muted);">Highly rated boarding houses near your campus.</p>
+            </div>
+
+            <div class="grid grid-3" id="featured-listings">
+                <!-- Fallback Static Content -->
+                <div class="card listing-card reveal">
+                    <div class="listing-img">
+                        <img src="Media/Boarding house 1/mages.jpg" alt="Boarding House">
+                        <span class="listing-uni">UNZA</span>
+                    </div>
+                    <div class="listing-content">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                            <h3>Green Valley Boarding House</h3>
+                            <span class="listing-price">K1,500</span>
+                        </div>
+                        <p><i class="fa-solid fa-location-dot"></i> Great East Road, Lusaka</p>
+                        <div style="display: flex; gap: 0.8rem; font-size: 0.8rem; color: #555; margin: 1rem 0;">
+                            <span><i class="fa-solid fa-bolt"></i> Solar Lighting</span>
+                            <span><i class="fa-solid fa-wifi"></i> Fiber WiFi</span>
+                        </div>
+                        <a href="listing-detail.html" class="btn btn-primary btn-animate"
+                            style="width: 100%; text-align: center;">View Details</a>
+                    </div>
+                </div>
+
+                <div class="card listing-card reveal">
+                    <div class="listing-img">
+                        <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Hostel">
+                        <span class="listing-uni">CBU</span>
+                    </div>
+                    <div class="listing-content">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                            <h3>Riverside Student Hostels</h3>
+                            <span class="listing-price">K1,200</span>
+                        </div>
+                        <p><i class="fa-solid fa-location-dot"></i> Riverside, Kitwe</p>
+                        <div style="display: flex; gap: 0.8rem; font-size: 0.8rem; color: #555; margin: 1rem 0;">
+                            <span><i class="fa-solid fa-shield-halved"></i> 24h Guard</span>
+                            <span><i class="fa-solid fa-water"></i> Borehole</span>
+                        </div>
+                        <a href="listing-detail.html" class="btn btn-primary btn-animate"
+                            style="width: 100%; text-align: center;">View Details</a>
+                    </div>
+                </div>
+
+                <div class="card listing-card reveal">
+                    <div class="listing-img">
+                        <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Inn">
+                        <span class="listing-uni">MULUNGUSHI</span>
+                    </div>
+                    <div class="listing-content">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                            <h3>Kabwe Scholar Inn</h3>
+                            <span class="listing-price">K800</span>
+                        </div>
+                        <p><i class="fa-solid fa-location-dot"></i> Highridge, Kabwe</p>
+                        <div style="display: flex; gap: 0.8rem; font-size: 0.8rem; color: #555; margin: 1rem 0;">
+                            <span><i class="fa-solid fa-faucet-drip"></i> Hot Water</span>
+                            <span><i class="fa-solid fa-bus"></i> Near Shuttle</span>
+                        </div>
+                        <a href="listing-detail.html" class="btn btn-primary btn-animate"
+                            style="width: 100%; text-align: center;">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Essential Services -->
+    <section class="services section-padding" style="background: #f8fafc;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;" class="reveal">
+                <h2>Everything You Need</h2>
+                <p style="color: var(--text-muted);">We handle the logistics so you can focus on your studies.</p>
+            </div>
+
+            <div class="grid grid-2" style="gap: 3rem;">
+                <div class="card reveal" style="padding: 3rem; text-align: center;">
+                    <i class="fa-solid fa-cart-shopping"
+                        style="font-size: 3rem; color: var(--secondary); margin-bottom: 1.5rem;"></i>
+                    <h3 style="margin-bottom: 1rem;">Daily Essentials</h3>
+                    <p style="margin-bottom: 2rem; color: var(--text-muted);">Groceries and study supplies delivered
+                        straight to your doorstep.</p>
+                    <a href="shop.html" class="btn btn-outline btn-animate">Explore Shop</a>
+                </div>
+
+                <div class="card reveal" style="padding: 3rem; text-align: center;">
+                    <i class="fa-solid fa-tag"
+                        style="font-size: 3rem; color: var(--primary); margin-bottom: 1.5rem;"></i>
+                    <h3 style="margin-bottom: 1rem;">Student Marketplace</h3>
+                    <p style="margin-bottom: 2rem; color: var(--text-muted);">Buy and sell second-hand textbooks,
+                        electronics, and furniture.</p>
+                    <a href="marketplace.html" class="btn btn-outline btn-animate">Browse Marketplace</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="grid grid-4" style="gap: 4rem; margin-bottom: 4rem;">
+                <div>
+                    <a href="index.html" class="logo" style="color: white; margin-bottom: 1.5rem;">
+                        <i class="fa-solid fa-house-chimney"></i> Peza Nyumba
+                    </a>
+                    <p style="opacity: 0.7; line-height: 1.6;">Zambia's number one platform for student support and
+                        university accommodation.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1.5rem;">Quick Links</h4>
+                    <ul style="list-style: none; opacity: 0.7; line-height: 2;">
+                        <li><a href="listings.html">Accommodation</a></li>
+                        <li><a href="shop.html">Groceries</a></li>
+                        <li><a href="marketplace.html">Marketplace</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1.5rem;">Supported Universities</h4>
+                    <ul style="list-style: none; opacity: 0.7; line-height: 2;">
+                        <li>UNZA - Lusaka</li>
+                        <li>CBU - Kitwe</li>
+                        <li>Mulungushi - Kabwe</li>
+                        <li>Cavendish - Lusaka</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1.5rem;">Contact Info</h4>
+                    <ul style="list-style: none; opacity: 0.7; line-height: 2;">
+                        <li><i class="fa-solid fa-envelope"></i> info@pezanyumba.com</li>
+                        <li><i class="fa-solid fa-phone"></i> +260 973 279 486</li>
+
+                    </ul>
+                </div>
+            </div>
+            <hr style="opacity: 0.1; margin-bottom: 2rem;">
+            <div style="text-align: center; opacity: 0.5; font-size: 0.9rem;">
+                <p>&copy; 2026 Peza Nyumba Company. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="auth.js" async></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

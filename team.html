@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team - Peza Nyumba</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="auth.js"></script>
+    <style>
+        .team-hero {
+            background: linear-gradient(rgba(47, 133, 90, 0.9), rgba(47, 133, 90, 0.8)),
+                url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            padding: 150px 0 100px;
+            text-align: center;
+            color: white;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: -50px;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-img {
+            height: 300px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .team-info {
+            padding: 2rem;
+        }
+
+        .team-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .team-info p {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dark);
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo"> <i class="fa-solid fa-house-chimney"></i> Peza Nyumba </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="listings.html">Accommodation</a></li>
+                    <li><a href="shop.html">Groceries</a></li>
+                    <li><a href="marketplace.html">Marketplace</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <a href="login.html" class="btn btn-outline">Log In</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="team-hero">
+        <div class="container">
+            <h1 style="font-size: 3.5rem; margin-bottom: 1rem;">Meet the Visionaries</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto;">
+                The dedicated team working behind the scenes to revolutionize student life in Zambia.
+            </p>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background: #f8fafc;">
+        <div class="container">
+            <div class="team-grid">
+                <!-- CEO -->
+                <div class="team-card reveal">
+                    <img src="Media/CEO.jpeg" class="team-img" alt="CEO">
+                    <div class="team-info">
+                        <h3>Tapiwa Ulaya</h3>
+                        <p>Founder & CEO</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTO -->
+                <div class="team-card reveal">
+                    <img src="Media/20251024_154601.jpg" class="team-img" alt="CTO">
+                    <div class="team-info">
+                        <h3>Getrude Banda</h3>
+                        <p>Chief Technology Officer</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Operations -->
+                <div class="team-card reveal">
+                    <img src="Media/20251024_153759.jpg" class="team-img" alt="Operations">
+                    <div class="team-info">
+                        <h3>Samson Ulaya</h3>
+                        <p>Head of Operations</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Success
+                <div class="team-card reveal">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                        class="team-img" alt="Customer Success">
+                    <div class="team-info">
+                        <h3>Namakau Sitali</h3>
+                        <p>Customer Experience Lead</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Peza Nyumba</h4>
+                    <p style="color: #ccc; font-size: 0.9rem;">Your trusted platform for finding accommodation and
+                        shopping essentials near Zambian universities.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="listings.html">Accommodation</a></li>
+                        <li><a href="shop.html">Groceries</a></li>
+                        <li><a href="marketplace.html">Marketplace</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Universities</h4>
+                    <ul>
+                        <li><a href="listings.html?uni=unza">UNZA</a></li>
+                        <li><a href="listings.html?uni=cbu">CBU</a></li>
+                        <li><a href="listings.html?uni=mulungushi">Mulungushi</a></li>
+                        <li><a href="listings.html?uni=cavendish">Cavendish</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-envelope"></i> info@pezanyumba.com</li>
+                        <li><i class="fa-solid fa-phone"></i> +260 960 000 000</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 Peza Nyumba Company. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+
+</html>
+

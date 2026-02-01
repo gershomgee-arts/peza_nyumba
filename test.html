@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peza Nyumba - Test Page</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #test-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+
+        .test-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <script>
+        // Hide loader after 1.5 seconds NO MATTER WHAT
+        setTimeout(() => {
+            const loader = document.getElementById('test-loader');
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 500);
+            }
+        }, 1500);
+    </script>
+</head>
+
+<body>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <i class="fa-solid fa-house-chimney"></i> Peza Nyumba
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="listings.html">Accommodation</a></li>
+                    <li><a href="shop.html">Groceries</a></li>
+                    <li><a href="marketplace.html">Marketplace</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <a href="login.html" class="btn btn-outline">Log In</a>
+                    <a href="signup.html" class="btn btn-secondary">Sign Up</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 style="font-size: 3.5rem; margin-bottom: 1.5rem;">✅ Site Working!</h1>
+            <p style="font-size: 1.25rem; margin-bottom: 3rem; opacity: 0.9;">
+                If you can see this page, the deployment is successful!
+            </p>
+            <a href="index.html" class="btn btn-primary" style="font-size: 1.2rem; padding: 1rem 2rem;">
+                Go to Main Site
+            </a>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background: white;">
+        <div class="container">
+            <div class="card" style="max-width: 800px; margin: 0 auto; padding: 3rem; text-align: center;">
+                <h2 style="color: var(--primary); margin-bottom: 2rem;">Deployment Status</h2>
+
+                <div style="display: grid; gap: 1.5rem; text-align: left;">
+                    <div
+                        style="padding: 1rem; background: #f0fdf4; border-radius: 8px; border-left: 4px solid #10b981;">
+                        <strong style="color: #166534;">✓ Frontend:</strong> Working perfectly!
+                    </div>
+
+                    <div
+                        style="padding: 1rem; background: #fef3c7; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                        <strong style="color: #92400e;">⚠ Backend:</strong> Available only on localhost
+                    </div>
+
+                    <div
+                        style="padding: 1rem; background: #dbeafe; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                        <strong style="color: #1e40af;">ℹ Info:</strong> Login, orders, and database features require
+                        backend deployment
+                    </div>
+                </div>
+
+                <p style="margin-top: 2rem; color: #64748b;">
+                    Share this link with anyone to show them the site! 🎉
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div style="text-align: center; padding: 2rem 0;">
+                <p>&copy; 2026 Peza Nyumba Company. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

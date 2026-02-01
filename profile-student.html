@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile - Peza Nyumba</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="auth.js"></script>
+    <style>
+        .profile-container {
+            padding-top: 100px;
+            background: #f8fafc;
+            min-height: 100vh;
+        }
+
+        .profile-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .profile-sidebar {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            height: fit-content;
+        }
+
+        .profile-main {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .profile-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 1rem;
+            color: #64748b;
+            text-decoration: none;
+            border-radius: var(--radius);
+            transition: 0.3s;
+        }
+
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background: #f0fdf4;
+            color: var(--primary);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .stat-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .stat-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .stat-card p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary);
+            margin: 0 auto 1rem;
+            border: 4px solid white;
+            box-shadow: var(--shadow);
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .status-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-delivered {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        @media (max-width: 992px) {
+            .profile-wrapper {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .profile-sidebar {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 1.5rem;
+                padding: 1rem;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            .profile-header {
+                margin-bottom: 0;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .profile-avatar {
+                width: 60px;
+                height: 60px;
+                margin: 0;
+                font-size: 1.5rem;
+            }
+
+            .profile-header h3,
+            .profile-header p {
+                display: none;
+                /* Hide name/verified on very small mobile to save space if needed, or keep minimal */
+            }
+
+            .sidebar-menu {
+                margin-top: 0;
+                display: flex;
+                gap: 0.5rem;
+            }
+
+            .sidebar-menu li {
+                margin-bottom: 0;
+            }
+
+            .sidebar-menu a {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .sidebar-menu a span {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav id="navbar">
+                <a href="index.html" class="logo"> <i class="fa-solid fa-house-chimney"></i> Peza Nyumba </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="listings.html">Accommodation</a></li>
+                    <li><a href="shop.html">Groceries</a></li>
+                    <li><a href="marketplace.html">Marketplace</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <!-- Profile dropdown will be injected by auth.js -->
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="profile-container">
+        <div class="profile-wrapper">
+            <!-- Sidebar -->
+            <aside class="profile-sidebar">
+                <div class="profile-header">
+                    <div class="profile-avatar" id="user-avatar"
+                        style="position: relative; cursor: pointer; overflow: hidden;"
+                        onclick="document.getElementById('avatar-upload').click()">
+                        <i class="fa-solid fa-user"></i>
+                        <div id="avatar-overlay"
+                            style="position: absolute; bottom:0; width:100%; background: rgba(0,0,0,0.5); color:white; font-size:0.7rem; padding: 2px 0;">
+                            Edit</div>
+                    </div>
+                    <input type="file" id="avatar-upload" style="display: none;" accept="image/*">
+                    <h3 id="sidebar-name">Student Name</h3>
+                    <p style="color: grey; font-size: 0.9rem;">Verified Student <i class="fa-solid fa-circle-check"
+                            style="color: #3b82f6;"></i></p>
+                </div>
+
+                <ul class="sidebar-menu">
+                    <li><a href="#" class="active" data-tab="overview"><i class="fa-solid fa-gauge"></i>
+                            <span>Overview</span></a>
+                    </li>
+                    <li><a href="#" data-tab="accommodation"><i class="fa-solid fa-house"></i>
+                            <span>Accommodation</span></a></li>
+                    <li><a href="#" data-tab="orders"><i class="fa-solid fa-bag-shopping"></i> <span>My
+                                Orders</span></a></li>
+                    <li><a href="#" data-tab="settings"><i class="fa-solid fa-user-gear"></i> <span>Settings</span></a>
+                    </li>
+                    <li><a href="#" style="color: #ef4444;" id="logout-sidebar"><i
+                                class="fa-solid fa-right-from-bracket"></i> <span>Log Out</span></a></li>
+                </ul>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="profile-main">
+                <!-- Profile Completion Notification -->
+                <div id="complete-profile-notify" class="profile-card"
+                    style="background: #fffbeb; border-left: 4px solid #f59e0b; display: none;">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <i class="fa-solid fa-circle-exclamation" style="color: #d97706; font-size: 1.5rem;"></i>
+                        <div style="flex: 1;">
+                            <h4 style="color: #92400e;">Finish setting up your profile</h4>
+                            <p style="color: #b45309; font-size: 0.85rem;">Please upload a profile picture so landlords
+                                and vendors can recognize you.</p>
+                        </div>
+                        <button class="btn btn-primary btn-sm"
+                            onclick="document.getElementById('avatar-upload').click()">Upload Now</button>
+                    </div>
+                </div>
+
+                <!-- Overview Tab -->
+                <div id="overview" class="tab-content active">
+                    <div class="stat-grid">
+                        <div class="stat-card">
+                            <i class="fa-solid fa-bookmark"></i>
+                            <h3>5</h3>
+                            <p>Saved Listings</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fa-solid fa-truck-fast"></i>
+                            <h3>2</h3>
+                            <p>Active Orders</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fa-solid fa-message"></i>
+                            <h3>0</h3>
+                            <p>Messages</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-card">
+                        <h3>Recent Activity</h3>
+                        <div style="margin-top: 1rem;">
+                            <div class="history-item">
+                                <div>
+                                    <h4 style="margin:0">Grocery Order #1234</h4>
+                                    <p style="font-size: 0.8rem; color: #64748b;">Today at 10:45 AM</p>
+                                </div>
+                                <span class="status-badge status-pending">Pending</span>
+                            </div>
+                            <div class="history-item">
+                                <div>
+                                    <h4 style="margin:0">Viewed Green Valley Boarding</h4>
+                                    <p style="font-size: 0.8rem; color: #64748b;">Yesterday</p>
+                                </div>
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="accommodation" class="tab-content">
+                    <div class="profile-card">
+                        <h3>Accommodation Activity</h3>
+                        <div style="margin-top: 2rem;">
+                            <h4><i class="fa-solid fa-heart" style="color: #ef4444;"></i> Saved Listings</h4>
+                            <div id="bookmarks-list"
+                                style="margin-top: 1rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
+                                <p style="color: #64748b;">Loading bookmarks...</p>
+                            </div>
+                        </div>
+                        <hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border);">
+                        <div>
+                            <h4><i class="fa-solid fa-paper-plane"></i> Reservation Requests</h4>
+                            <div id="reservations-list" style="margin-top: 1rem;">
+                                <p style="color: #64748b;">Loading requests...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Orders Tab -->
+                <div id="orders" class="tab-content">
+                    <div class="profile-card">
+                        <h3>My Shopping History</h3>
+                        <div id="orders-list" style="margin-top: 1rem;">
+                            <!-- Orders will be loaded here -->
+                            <p style="color: #64748b;">Loading your orders...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Tab -->
+                <div id="settings" class="tab-content">
+                    <div class="profile-card">
+                        <h3>Personal Information</h3>
+                        <form id="profile-form" style="margin-top: 2rem;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                                <div>
+                                    <label>Full Name</label>
+                                    <input type="text" id="profile-name" class="form-control"
+                                        style="width: 100%; padding: 0.8rem; border:1px solid var(--border); border-radius: var(--radius);">
+                                </div>
+                                <div>
+                                    <label>Email Address (Read-only)</label>
+                                    <input type="email" id="profile-email" class="form-control" readonly
+                                        style="width: 100%; padding: 0.8rem; border:1px solid var(--border); border-radius: var(--radius); background: #f1f5f9;">
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 1rem;">
+                                <label>Phone Number (WhatsApp)</label>
+                                <input type="text" id="profile-phone" placeholder="+260..."
+                                    style="width: 100%; padding: 0.8rem; border:1px solid var(--border); border-radius: var(--radius);">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </form>
+                    </div>
+
+                    <div class="profile-card" style="margin-top: 2rem;">
+                        <h3>Security</h3>
+                        <button class="btn btn-outline" style="margin-top: 1rem;">Change Password</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="copyright" style="text-align: center; color: white; padding: 2rem 0;">
+                &copy; 2026 Peza Nyumba Company. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab system
+        const tabs = document.querySelectorAll('[data-tab]');
+        const contents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = tab.getAttribute('data-tab');
+
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+
+                tab.classList.add('active');
+                document.getElementById(target).classList.add('active');
+            });
+        });
+
+        // Load User Data
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('peza_user'));
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            document.getElementById('sidebar-name').innerText = user.name || user.email.split('@')[0];
+            document.getElementById('profile-name').value = user.name || "";
+            document.getElementById('profile-email').value = user.email;
+
+            // Handle Profile Picture Display & Notification
+            if (user.profilePicture) {
+                document.getElementById('user-avatar').innerHTML = `<img src="${user.profilePicture}" style="width:100%; height:100%; object-fit:cover;">`;
+            } else {
+                document.getElementById('complete-profile-notify').style.display = 'block';
+            }
+
+            loadOrders(user._id);
+            loadAccommodation(user._id, user.bookmarks || []);
+
+            // Profile Picture Upload Logic
+            document.getElementById('avatar-upload').addEventListener('change', async (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const formData = new FormData();
+                formData.append('file', file);
+
+                try {
+                    // 1. Upload file to server
+                    const uploadRes = await fetch('http://localhost:3000/uploads/file', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const uploadData = await uploadRes.json();
+
+                    // 2. Update user profile with new URL
+                    const updateRes = await fetch('http://localhost:3000/users/profile-picture', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            userId: user._id,
+                            imageUrl: uploadData.url
+                        })
+                    });
+
+                    if (updateRes.ok) {
+                        // 3. Update local storage and UI
+                        user.profilePicture = uploadData.url;
+                        localStorage.setItem('peza_user', JSON.stringify(user));
+                        document.getElementById('user-avatar').innerHTML = `<img src="${uploadData.url}" style="width:100%; height:100%; object-fit:cover;">`;
+
+                        // Update top-right corner avatar
+                        const navAvatar = document.getElementById('nav-avatar-container');
+                        if (navAvatar) {
+                            navAvatar.innerHTML = `<img src="${uploadData.url}" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary);">`;
+                        }
+
+                        document.getElementById('complete-profile-notify').style.display = 'none';
+                        alert("Profile picture updated successfully!");
+                    }
+                } catch (err) {
+                    console.error(err);
+                    alert("Failed to upload profile picture.");
+                }
+            });
+        });
+
+        async function loadOrders(userId) {
+            try {
+                const response = await fetch(`http://localhost:3000/orders/user/${userId}`);
+                const orders = await response.json();
+
+                const list = document.getElementById('orders-list');
+                if (orders.length === 0) {
+                    list.innerHTML = '<p style="color: #64748b;">You haven\'t placed any orders yet.</p>';
+                    return;
+                }
+
+                list.innerHTML = orders.map(order => `
+                    <div class="history-item">
+                        <div>
+                            <h4 style="margin:0">Order ${order._id.substring(18)}</h4>
+                            <p style="font-size: 0.8rem; color: #64748b;">${new Date(order.createdAt).toLocaleDateString()}</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <p style="font-weight: 600;">K${order.total}</p>
+                            <span class="status-badge status-${order.status.toLowerCase()}">${order.status}</span>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        async function loadAccommodation(userId, bookmarks) {
+            // Load Bookmarks
+            const bList = document.getElementById('bookmarks-list');
+            if (bookmarks.length === 0) {
+                bList.innerHTML = '<p style="color: #64748b;">No bookmarks yet.</p>';
+            } else {
+                // In a real app we'd fetch the listing details. For now, we'll show IDs or generic cards
+                bList.innerHTML = bookmarks.map(id => `
+                    <div class="history-item" style="flex-direction: column; align-items: flex-start; gap: 0.5rem; border: 1px solid #eee; padding: 1rem; border-radius: 8px;">
+                        <img src="Media/Boarding house 1/images.jpg" style="width: 100%; height: 100px; object-fit: cover; border-radius: 4px;">
+                        <h4 style="margin:0">House #${id}</h4>
+                        <a href="listing-detail.html?id=${id}" class="btn btn-outline btn-sm" style="width: 100%;">View</a>
+                    </div>
+                `).join('');
+            }
+
+            // Load Reservations
+            try {
+                const res = await fetch(`http://localhost:3000/reservations/user/${userId}`);
+                const data = await res.json();
+                const rList = document.getElementById('reservations-list');
+
+                if (data.length === 0) {
+                    rList.innerHTML = '<p style="color: #64748b;">No active requests.</p>';
+                } else {
+                    rList.innerHTML = data.map(r => `
+                        <div class="history-item">
+                            <div>
+                                <h4 style="margin:0">${r.listingName || 'Listing #' + r.listingId}</h4>
+                                <p style="font-size: 0.8rem; color: #64748b;">Requested on ${new Date(r.createdAt).toLocaleDateString()}</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <p style="font-weight: 600;">${r.price || 'K1,500'}</p>
+                                <span class="status-badge status-${r.status === 'pending' ? 'pending' : 'delivered'}">${r.status.toUpperCase()}</span>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            } catch (err) { console.error(err); }
+        }
+
+        document.getElementById('logout-sidebar').onclick = () => PezaAuth.logout();
+    </script>
+</body>
+
+</html>
+

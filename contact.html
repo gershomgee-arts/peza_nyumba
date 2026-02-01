@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Peza Nyumba</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo"> <i class="fa-solid fa-house-chimney"></i> Peza Nyumba </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="listings.html">Accommodation</a></li>
+                    <li><a href="shop.html">Groceries</a></li>
+                    <li><a href="marketplace.html">Marketplace</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <a href="login.html" class="btn btn-primary">Log In</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header"
+        style="padding-top: 120px; text-align: center; background: #fdf2f8; padding-bottom: 2rem;">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>We'd love to hear from you. Get in touch with our team.</p>
+        </div>
+    </section>
+
+    <section class="contact section-padding">
+        <div class="container">
+            <div class="grid grid-2">
+                <div>
+                    <h3>Get in Touch</h3>
+                    <p style="margin-bottom: 2rem; color: grey;">
+                        Have questions about listing your property or ordering groceries? Reach out to us directly.
+                    </p>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+                            <div
+                                style="width: 50px; height: 50px; background: #e0f2fe; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin: 0; color: #374151;">Email Us</h4>
+                                <a href="mailto:info@pezanyumba.zm"
+                                    style="color: var(--primary);">info@pezanyumba.zm</a>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+                            <div
+                                style="width: 50px; height: 50px; background: #dcfce7; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin: 0; color: #374151;">WhatsApp</h4>
+                                <a href="https://wa.me/260973279486" style="color: var(--primary);">+260973279486</a>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+                            <div
+                                style="width: 50px; height: 50px; background: #fee2e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin: 0; color: #374151;">Call Us</h4>
+                                <a href="tel:+260973279486" style="color: var(--primary);">+260973279486</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem;">
+                        <h4>Follow Us</h4>
+                        <div class="social-links" style="margin-top: 1rem;">
+                            <a href="#" style="color: #1877f2; font-size: 1.5rem;"><i
+                                    class="fa-brands fa-facebook"></i></a>
+                            <a href="#" style="color: #000; font-size: 1.5rem;"><i class="fa-brands fa-tiktok"></i></a>
+                            <a href="#" style="color: #c32aa3; font-size: 1.5rem;"><i
+                                    class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 style="margin-bottom: 1.5rem;">Send a Message</h3>
+                    <form id="contact-form">
+                        <div style="margin-bottom: 1rem;">
+                            <input type="text" id="contact-name" placeholder="Your Name" required
+                                style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius);">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <input type="email" id="contact-email" placeholder="Your Email" required
+                                style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius);">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <textarea id="contact-message" placeholder="Your Message" rows="5" required
+                                style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius);"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Peza Nyumba</h4>
+                    <p style="color: #ccc; font-size: 0.9rem;">Your trusted platform for finding accommodation and
+                        shopping essentials near Zambian universities.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="listings.html">Accommodation</a></li>
+                        <li><a href="shop.html">Groceries</a></li>
+                        <li><a href="marketplace.html">Marketplace</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-envelope"></i> info@pezanyumba.zm</li>
+                        <li><i class="fa-solid fa-phone"></i> +260 973 279 486</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 Peza Nyumba Company. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="main.js"></script>
+    <script>
+        document.getElementById('contact-form').onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+
+            const messageData = {
+                name: document.getElementById('contact-name').value,
+                email: document.getElementById('contact-email').value,
+                message: document.getElementById('contact-message').value
+            };
+
+            try {
+                btn.disabled = true;
+                btn.innerText = "Sending...";
+
+                const response = await fetch('http://localhost:3000/orders/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(messageData)
+                });
+
+                if (!response.ok) throw new Error('Failed to send message');
+
+                alert("Thank you! Your message has been sent successfully.");
+                e.target.reset();
+
+            } catch (err) {
+                console.error(err);
+                alert("Sorry, there was an error sending your message. Please try again later.");
+            } finally {
+                btn.disabled = false;
+                btn.innerText = originalText;
+            }
+        };
+    </script>
+</body>
+
+</html>
+
